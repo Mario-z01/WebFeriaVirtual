@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="FeriaEntities">
+    <EntitySetMapping Name="ADMINISTRADOR">
+      <EntityTypeMapping TypeName="Model.ADMINISTRADOR">
+        <MappingFragment StoreEntitySet="ADMINISTRADOR">
+          <ScalarProperty Name="ID_ADMIN" ColumnName="ID_ADMIN" />
+          <ScalarProperty Name="USUARIO_ADMIN" ColumnName="USUARIO_ADMIN" />
+          <ScalarProperty Name="EMAIL_ADMIN" ColumnName="EMAIL_ADMIN" />
+          <ScalarProperty Name="CONTRASEÑA_ADMIN" ColumnName="CONTRASEÑA_ADMIN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTE_EXTERNO">
+      <EntityTypeMapping TypeName="Model.CLIENTE_EXTERNO">
+        <MappingFragment StoreEntitySet="CLIENTE_EXTERNO">
+          <ScalarProperty Name="ID_CLIENTE2" ColumnName="ID_CLIENTE2" />
+          <ScalarProperty Name="NOMBRE_CLIENTE2" ColumnName="NOMBRE_CLIENTE2" />
+          <ScalarProperty Name="DIRECCION_CLIENTE2" ColumnName="DIRECCION_CLIENTE2" />
+          <ScalarProperty Name="TELEFONO_CLIENTE2" ColumnName="TELEFONO_CLIENTE2" />
+          <ScalarProperty Name="EMAIL_CLIENTE2" ColumnName="EMAIL_CLIENTE2" />
+          <ScalarProperty Name="CONTRASEÑA_CLIENTE2" ColumnName="CONTRASEÑA_CLIENTE2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTE_INTERNO">
+      <EntityTypeMapping TypeName="Model.CLIENTE_INTERNO">
+        <MappingFragment StoreEntitySet="CLIENTE_INTERNO">
+          <ScalarProperty Name="ID_CLIENTE1" ColumnName="ID_CLIENTE1" />
+          <ScalarProperty Name="NOMBRE_CLIENTE1" ColumnName="NOMBRE_CLIENTE1" />
+          <ScalarProperty Name="DIRECCION_CLIENTE1" ColumnName="DIRECCION_CLIENTE1" />
+          <ScalarProperty Name="TELEFONO_CLIENTE1" ColumnName="TELEFONO_CLIENTE1" />
+          <ScalarProperty Name="EMAIL_CLIENTE1" ColumnName="EMAIL_CLIENTE1" />
+          <ScalarProperty Name="CONTRASEÑA_CLIENTE1" ColumnName="CONTRASEÑA_CLIENTE1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AGREGAADMIN" FunctionName="Model.Store.AGREGAADMIN" />
+    <FunctionImportMapping FunctionImportName="AGREGARCLIENTEEXT" FunctionName="Model.Store.AGREGARCLIENTEEXT" />
+    <FunctionImportMapping FunctionImportName="AGREGARCLIENTEINT" FunctionName="Model.Store.AGREGARCLIENTEINT" />
+  </EntityContainerMapping>
+</Mapping>

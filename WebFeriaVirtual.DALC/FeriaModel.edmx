@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMINISTRADOR">
+          <Key>
+            <PropertyRef Name="ID_ADMIN" />
+          </Key>
+          <Property Name="ID_ADMIN" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="USUARIO_ADMIN" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL_ADMIN" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="CONTRASEÑA_ADMIN" Type="varchar2" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE_EXTERNO">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE2" />
+          </Key>
+          <Property Name="ID_CLIENTE2" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_CLIENTE2" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DIRECCION_CLIENTE2" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="TELEFONO_CLIENTE2" Type="varchar2" MaxLength="12" Nullable="false" />
+          <Property Name="EMAIL_CLIENTE2" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="CONTRASEÑA_CLIENTE2" Type="varchar2" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE_INTERNO">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE1" />
+          </Key>
+          <Property Name="ID_CLIENTE1" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_CLIENTE1" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DIRECCION_CLIENTE1" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="TELEFONO_CLIENTE1" Type="varchar2" MaxLength="12" Nullable="false" />
+          <Property Name="EMAIL_CLIENTE1" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="CONTRASEÑA_CLIENTE1" Type="varchar2" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Function Name="AGREGAADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="USERADMIN" Type="varchar2" Mode="In" />
+          <Parameter Name="EMAILADMIN" Type="varchar2" Mode="In" />
+          <Parameter Name="CONTRAADMIN" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="AGREGARCLIENTEEXT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="NOMCLIENTE2" Type="varchar2" Mode="In" />
+          <Parameter Name="DIRECLIENTE2" Type="varchar2" Mode="In" />
+          <Parameter Name="FONOCLIENTE2" Type="varchar2" Mode="In" />
+          <Parameter Name="CORREOCLIENTE2" Type="varchar2" Mode="In" />
+          <Parameter Name="CONTRACLIENTE2" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="AGREGARCLIENTEINT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="NOMCLIENTE1" Type="varchar2" Mode="In" />
+          <Parameter Name="DIRECLIENTE1" Type="varchar2" Mode="In" />
+          <Parameter Name="FONOCLIENTE1" Type="varchar2" Mode="In" />
+          <Parameter Name="CORREOCLIENTE1" Type="varchar2" Mode="In" />
+          <Parameter Name="CONTRACLIENTE1" Type="varchar2" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" Schema="USUARIOFERIA1" store:Type="Tables" />
+          <EntitySet Name="CLIENTE_EXTERNO" EntityType="Self.CLIENTE_EXTERNO" Schema="USUARIOFERIA1" store:Type="Tables" />
+          <EntitySet Name="CLIENTE_INTERNO" EntityType="Self.CLIENTE_INTERNO" Schema="USUARIOFERIA1" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMINISTRADOR">
+          <Key>
+            <PropertyRef Name="ID_ADMIN" />
+          </Key>
+          <Property Name="ID_ADMIN" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="USUARIO_ADMIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_ADMIN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRASEÑA_ADMIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE_EXTERNO">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE2" />
+          </Key>
+          <Property Name="ID_CLIENTE2" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_CLIENTE2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION_CLIENTE2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO_CLIENTE2" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_CLIENTE2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRASEÑA_CLIENTE2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE_INTERNO">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE1" />
+          </Key>
+          <Property Name="ID_CLIENTE1" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_CLIENTE1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION_CLIENTE1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO_CLIENTE1" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_CLIENTE1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRASEÑA_CLIENTE1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="FeriaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" />
+          <EntitySet Name="CLIENTE_EXTERNO" EntityType="Self.CLIENTE_EXTERNO" />
+          <EntitySet Name="CLIENTE_INTERNO" EntityType="Self.CLIENTE_INTERNO" />
+          <FunctionImport Name="AGREGAADMIN">
+            <Parameter Name="USERADMIN" Mode="In" Type="String" />
+            <Parameter Name="EMAILADMIN" Mode="In" Type="String" />
+            <Parameter Name="CONTRAADMIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AGREGARCLIENTEEXT">
+            <Parameter Name="NOMCLIENTE2" Mode="In" Type="String" />
+            <Parameter Name="DIRECLIENTE2" Mode="In" Type="String" />
+            <Parameter Name="FONOCLIENTE2" Mode="In" Type="String" />
+            <Parameter Name="CORREOCLIENTE2" Mode="In" Type="String" />
+            <Parameter Name="CONTRACLIENTE2" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AGREGARCLIENTEINT">
+            <Parameter Name="NOMCLIENTE1" Mode="In" Type="String" />
+            <Parameter Name="DIRECLIENTE1" Mode="In" Type="String" />
+            <Parameter Name="FONOCLIENTE1" Mode="In" Type="String" />
+            <Parameter Name="CORREOCLIENTE1" Mode="In" Type="String" />
+            <Parameter Name="CONTRACLIENTE1" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="FeriaEntities">
+          <EntitySetMapping Name="ADMINISTRADOR">
+            <EntityTypeMapping TypeName="Model.ADMINISTRADOR">
+              <MappingFragment StoreEntitySet="ADMINISTRADOR">
+                <ScalarProperty Name="ID_ADMIN" ColumnName="ID_ADMIN" />
+                <ScalarProperty Name="USUARIO_ADMIN" ColumnName="USUARIO_ADMIN" />
+                <ScalarProperty Name="EMAIL_ADMIN" ColumnName="EMAIL_ADMIN" />
+                <ScalarProperty Name="CONTRASEÑA_ADMIN" ColumnName="CONTRASEÑA_ADMIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE_EXTERNO">
+            <EntityTypeMapping TypeName="Model.CLIENTE_EXTERNO">
+              <MappingFragment StoreEntitySet="CLIENTE_EXTERNO">
+                <ScalarProperty Name="ID_CLIENTE2" ColumnName="ID_CLIENTE2" />
+                <ScalarProperty Name="NOMBRE_CLIENTE2" ColumnName="NOMBRE_CLIENTE2" />
+                <ScalarProperty Name="DIRECCION_CLIENTE2" ColumnName="DIRECCION_CLIENTE2" />
+                <ScalarProperty Name="TELEFONO_CLIENTE2" ColumnName="TELEFONO_CLIENTE2" />
+                <ScalarProperty Name="EMAIL_CLIENTE2" ColumnName="EMAIL_CLIENTE2" />
+                <ScalarProperty Name="CONTRASEÑA_CLIENTE2" ColumnName="CONTRASEÑA_CLIENTE2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE_INTERNO">
+            <EntityTypeMapping TypeName="Model.CLIENTE_INTERNO">
+              <MappingFragment StoreEntitySet="CLIENTE_INTERNO">
+                <ScalarProperty Name="ID_CLIENTE1" ColumnName="ID_CLIENTE1" />
+                <ScalarProperty Name="NOMBRE_CLIENTE1" ColumnName="NOMBRE_CLIENTE1" />
+                <ScalarProperty Name="DIRECCION_CLIENTE1" ColumnName="DIRECCION_CLIENTE1" />
+                <ScalarProperty Name="TELEFONO_CLIENTE1" ColumnName="TELEFONO_CLIENTE1" />
+                <ScalarProperty Name="EMAIL_CLIENTE1" ColumnName="EMAIL_CLIENTE1" />
+                <ScalarProperty Name="CONTRASEÑA_CLIENTE1" ColumnName="CONTRASEÑA_CLIENTE1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AGREGAADMIN" FunctionName="Model.Store.AGREGAADMIN" />
+          <FunctionImportMapping FunctionImportName="AGREGARCLIENTEEXT" FunctionName="Model.Store.AGREGARCLIENTEEXT" />
+          <FunctionImportMapping FunctionImportName="AGREGARCLIENTEINT" FunctionName="Model.Store.AGREGARCLIENTEINT" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

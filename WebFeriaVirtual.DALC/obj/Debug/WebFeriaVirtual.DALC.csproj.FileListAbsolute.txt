@@ -1,0 +1,10 @@
+Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\bin\Debug\WebFeriaVirtual.DALC.dll.config
+Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\bin\Debug\WebFeriaVirtual.DALC.dll
+Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\bin\Debug\WebFeriaVirtual.DALC.pdb
+Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\bin\Debug\EntityFramework.dll
+Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\bin\Debug\EntityFramework.xml
+Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\obj\Debug\WebFeriaVirtual.DALC.csprojAssemblyReference.cache
+Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\obj\Debug\WebFeriaVirtual.DALC.csproj.CoreCompileInputs.cache
+Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\obj\Debug\WebFeriaVirtual.DALC.csproj.CopyComplete
+Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\obj\Debug\WebFeriaVirtual.DALC.dll
+Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\obj\Debug\WebFeriaVirtual.DALC.pdb

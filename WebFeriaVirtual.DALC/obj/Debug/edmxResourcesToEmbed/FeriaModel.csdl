@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ADMINISTRADOR">
+    <Key>
+      <PropertyRef Name="ID_ADMIN" />
+    </Key>
+    <Property Name="ID_ADMIN" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="USUARIO_ADMIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL_ADMIN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTRASEÑA_ADMIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLIENTE_EXTERNO">
+    <Key>
+      <PropertyRef Name="ID_CLIENTE2" />
+    </Key>
+    <Property Name="ID_CLIENTE2" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE_CLIENTE2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DIRECCION_CLIENTE2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TELEFONO_CLIENTE2" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL_CLIENTE2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTRASEÑA_CLIENTE2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLIENTE_INTERNO">
+    <Key>
+      <PropertyRef Name="ID_CLIENTE1" />
+    </Key>
+    <Property Name="ID_CLIENTE1" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE_CLIENTE1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DIRECCION_CLIENTE1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TELEFONO_CLIENTE1" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL_CLIENTE1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTRASEÑA_CLIENTE1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="FeriaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" />
+    <EntitySet Name="CLIENTE_EXTERNO" EntityType="Self.CLIENTE_EXTERNO" />
+    <EntitySet Name="CLIENTE_INTERNO" EntityType="Self.CLIENTE_INTERNO" />
+    <FunctionImport Name="AGREGAADMIN">
+      <Parameter Name="USERADMIN" Mode="In" Type="String" />
+      <Parameter Name="EMAILADMIN" Mode="In" Type="String" />
+      <Parameter Name="CONTRAADMIN" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AGREGARCLIENTEEXT">
+      <Parameter Name="NOMCLIENTE2" Mode="In" Type="String" />
+      <Parameter Name="DIRECLIENTE2" Mode="In" Type="String" />
+      <Parameter Name="FONOCLIENTE2" Mode="In" Type="String" />
+      <Parameter Name="CORREOCLIENTE2" Mode="In" Type="String" />
+      <Parameter Name="CONTRACLIENTE2" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AGREGARCLIENTEINT">
+      <Parameter Name="NOMCLIENTE1" Mode="In" Type="String" />
+      <Parameter Name="DIRECLIENTE1" Mode="In" Type="String" />
+      <Parameter Name="FONOCLIENTE1" Mode="In" Type="String" />
+      <Parameter Name="CORREOCLIENTE1" Mode="In" Type="String" />
+      <Parameter Name="CONTRACLIENTE1" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

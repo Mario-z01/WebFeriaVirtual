@@ -1,0 +1,28 @@
+﻿@model WebFeriaVirtual.Negocio.UsuarioInterno
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Agregar nuevo cliente interno</h2>
+@Html.ActionLink("Lista de usuarios internos", "Index")
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(u => u.Nombre)
+    @Html.TextBoxFor(u => u.Nombre)
+    <br />
+    @Html.LabelFor(u => u.Direccion)
+    @Html.TextBoxFor(u => u.Direccion)
+    <br />
+    @Html.LabelFor(u => u.Telefono)
+    @Html.TextBoxFor(u => u.Telefono)
+    <br />
+    @Html.LabelFor(u => u.Correo)
+    @Html.TextBoxFor(u => u.Correo)
+    <br />
+    @Html.LabelFor(u => u.Contraseña)
+    @Html.PasswordFor(u => u.Contraseña)
+    <br />
+    <button>Guardar datos</button>
+}
+
