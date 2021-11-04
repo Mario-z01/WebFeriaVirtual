@@ -1,0 +1,24 @@
+﻿@model WebFeriaVirtual.Negocio.Producto
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Ingresar nuevo producto</h2>
+
+@Html.ActionLink("Lista de productos", "Index")
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(p => p.TipoId, "Tipo producto")
+    <br />
+    @Html.DropDownListFor(p => p.TipoId, new SelectList(ViewBag.tipos, "Id", "Nombre"))
+    <br />
+    @Html.LabelFor(p => p.Stock, "Stock en Kg")
+    <br />
+    @Html.TextBoxFor(p => p.Stock)
+    <br />
+    @Html.LabelFor(p => p.Precio, "Precio por Kg")
+    <br />
+    @Html.TextBoxFor(p => p.Precio)
+    <br />
+    <button>Guardar datos</button>
+}

@@ -11,7 +11,7 @@ namespace WebFeriaVirtual.Controllers
     public class UsuarioIntController : Controller
     {
         // GET: UsuarioInt
-        public ActionResult Index()
+        public ActionResult ListaUsuInt()
         {
             ViewBag.usuarioInternos = new UsuarioInterno().ReadAll();
             return View();
@@ -23,22 +23,32 @@ namespace WebFeriaVirtual.Controllers
             return View();
         }
 
-        // GET: UsuarioInt/Create
-        public ActionResult Create()
+
+        public ActionResult IndexInt()
         {
             return View();
         }
 
-        // POST: UsuarioInt/Create
+        public ActionResult SolicitudInt()
+        {
+            return View();
+        }
+
+        public ActionResult CreateUsuInt()
+        {
+            return View();
+        }
+
+        // POST: UsuarioInt/CreateInt
         [HttpPost]
-        public ActionResult Create([Bind(Include ="Nombre,Direccion,Telefono,Correo,Contraseña")]UsuarioInterno usuarioInterno)
+        public ActionResult CreateUsuInt([Bind(Include = "Nombre,Direccion,Telefono,Correo,Contraseña")]UsuarioInterno usuarioInterno)
         {
             try
             {
                 // TODO: Add insert logic here
                 usuarioInterno.Save();
                 TempData["mensaje"] = "Usuario guardado correctamente";
-                return RedirectToAction("Index");
+                return RedirectToAction("ListaUsuInt", "UsuarioInt");
             }
             catch
             {
@@ -46,35 +56,57 @@ namespace WebFeriaVirtual.Controllers
             }
         }
 
-        // GET: UsuarioInt/Edit/5
+        // GET: Producto/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            UsuarioInterno u = new UsuarioInterno().Find(id);
+
+            if (u == null)
+            {
+                TempData["mensaje"] = "El usuario no existe";
+                return RedirectToAction("ListaUsuInt");
+            }
+
+            return View(u);
         }
 
-        // POST: UsuarioInt/Edit/5
+        // POST: Producto/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Direccion,Telefono,Correo,Contraseña")]UsuarioInterno usuarioInterno)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                usuarioInterno.Update();
+                TempData["mensaje"] = "Usuario modificado correctamente";
+                return RedirectToAction("ListaUsuInt");
             }
             catch
             {
-                return View();
+                return View(usuarioInterno);
             }
         }
 
-        // GET: UsuarioInt/Delete/5
+        // GET: Producto/Delete/5
         public ActionResult Delete(int id)
         {
+            if (new UsuarioInterno().Find(id) == null)
+            {
+                TempData["Mensaje"] = "no existe el usuario";
+                return RedirectToAction("ListaUsuInt");
+            }
+            if (new UsuarioInterno().Delete(id))
+            {
+                TempData["Mensaje"] = "Eliminacion correcta";
+                return RedirectToAction("ListaUsuInt");
+            }
+
+
+            TempData["Mensaje"] = "No se elimino el usuario";
             return View();
         }
 
-        // POST: UsuarioInt/Delete/5
+        // POST: Producto/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -82,7 +114,7 @@ namespace WebFeriaVirtual.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ListaUsuInt");
             }
             catch
             {

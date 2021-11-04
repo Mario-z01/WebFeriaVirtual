@@ -1,0 +1,24 @@
+﻿@model WebFeriaVirtual.Negocio.UsuarioAdmin
+@{
+    ViewBag.Title = "LoginAdmin";
+}
+
+<h2>Ingresa tus credenciales de Administrador</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(a => a.Usuario, "Usuario")
+    <br />
+    @Html.TextBoxFor(a => a.Usuario, new { type = "Usuario" })
+    <br />
+    @Html.LabelFor(a => a.Contraseña, "Contraseña")
+    <br />
+    @Html.PasswordFor(a => a.Contraseña)
+    <br />
+    <br />
+    <button>Ingresar</button>
+}
+
+<br />
+
+@TempData["Mensaje"]

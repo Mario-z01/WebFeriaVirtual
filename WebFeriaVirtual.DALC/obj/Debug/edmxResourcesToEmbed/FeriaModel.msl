@@ -35,8 +35,73 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="AGREGAADMIN" FunctionName="Model.Store.AGREGAADMIN" />
+    <EntitySetMapping Name="PRODUCTO">
+      <EntityTypeMapping TypeName="Model.PRODUCTO">
+        <MappingFragment StoreEntitySet="PRODUCTO">
+          <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+          <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+          <ScalarProperty Name="STOCK_PRODUCTO" ColumnName="STOCK_PRODUCTO" />
+          <ScalarProperty Name="PRECIO_PRODUCTO" ColumnName="PRECIO_PRODUCTO" />
+          <ScalarProperty Name="IMAGEN_PRODUCTO" ColumnName="IMAGEN_PRODUCTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO">
+      <EntityTypeMapping TypeName="Model.TIPO">
+        <MappingFragment StoreEntitySet="TIPO">
+          <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+          <ScalarProperty Name="NOMBRE_PRODUCTO" ColumnName="NOMBRE_PRODUCTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AGREGAPRODUCTO" FunctionName="Model.Store.AGREGAPRODUCTO" />
+    <FunctionImportMapping FunctionImportName="AGREGAPRODUCTOR" FunctionName="Model.Store.AGREGAPRODUCTOR" />
     <FunctionImportMapping FunctionImportName="AGREGARCLIENTEEXT" FunctionName="Model.Store.AGREGARCLIENTEEXT" />
     <FunctionImportMapping FunctionImportName="AGREGARCLIENTEINT" FunctionName="Model.Store.AGREGARCLIENTEINT" />
+    <FunctionImportMapping FunctionImportName="ACTUALIZAPRODUCTO" FunctionName="Model.Store.ACTUALIZAPRODUCTO" />
+    <FunctionImportMapping FunctionImportName="ACTUALIZATIPO" FunctionName="Model.Store.ACTUALIZATIPO" />
+    <FunctionImportMapping FunctionImportName="AGREGATIPO" FunctionName="Model.Store.AGREGATIPO" />
+    <FunctionImportMapping FunctionImportName="ELIMINAPRODUCTO" FunctionName="Model.Store.ELIMINAPRODUCTO" />
+    <FunctionImportMapping FunctionImportName="ELIMINARTIPO" FunctionName="Model.Store.ELIMINARTIPO" />
+    <EntitySetMapping Name="CALIDAD">
+      <EntityTypeMapping TypeName="Model.CALIDAD">
+        <MappingFragment StoreEntitySet="CALIDAD">
+          <ScalarProperty Name="NOMBRE_CALIDAD" ColumnName="NOMBRE_CALIDAD" />
+          <ScalarProperty Name="ID_CALIDAD" ColumnName="ID_CALIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOLICITUD">
+      <EntityTypeMapping TypeName="Model.SOLICITUD">
+        <MappingFragment StoreEntitySet="SOLICITUD">
+          <ScalarProperty Name="CANTIDAD_SOLICITUD" ColumnName="CANTIDAD_SOLICITUD" />
+          <ScalarProperty Name="ID_CALIDAD" ColumnName="ID_CALIDAD" />
+          <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+          <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ACTUALIZASOLICITUD" FunctionName="Model.Store.ACTUALIZASOLICITUD" />
+    <FunctionImportMapping FunctionImportName="AGREGASOLICITUD" FunctionName="Model.Store.AGREGASOLICITUD" />
+    <FunctionImportMapping FunctionImportName="ELIMINASOLICITUD" FunctionName="Model.Store.ELIMINASOLICITUD" />
+    <EntitySetMapping Name="PRODUCTOR">
+      <EntityTypeMapping TypeName="Model.PRODUCTOR">
+        <MappingFragment StoreEntitySet="PRODUCTOR">
+          <ScalarProperty Name="CONTRASEÑA_P" ColumnName="CONTRASEÑA_P" />
+          <ScalarProperty Name="EMAIL_P" ColumnName="EMAIL_P" />
+          <ScalarProperty Name="DIRECCION_P" ColumnName="DIRECCION_P" />
+          <ScalarProperty Name="TELEFONO_P" ColumnName="TELEFONO_P" />
+          <ScalarProperty Name="EDAD_P" ColumnName="EDAD_P" />
+          <ScalarProperty Name="NOMBRE_P" ColumnName="NOMBRE_P" />
+          <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ACTUALIZAEXTERNO" FunctionName="Model.Store.ACTUALIZAEXTERNO" />
+    <FunctionImportMapping FunctionImportName="ACTUALIZAINTERNO" FunctionName="Model.Store.ACTUALIZAINTERNO" />
+    <FunctionImportMapping FunctionImportName="ELIMINAEXTERNO" FunctionName="Model.Store.ELIMINAEXTERNO" />
+    <FunctionImportMapping FunctionImportName="ELIMINAINTERNO" FunctionName="Model.Store.ELIMINAINTERNO" />
+    <FunctionImportMapping FunctionImportName="ACTUALIZAPRODUCTOR" FunctionName="Model.Store.ACTUALIZAPRODUCTOR" />
+    <FunctionImportMapping FunctionImportName="ELIMINAPRODUCTOR" FunctionName="Model.Store.ELIMINAPRODUCTOR" />
   </EntityContainerMapping>
 </Mapping>

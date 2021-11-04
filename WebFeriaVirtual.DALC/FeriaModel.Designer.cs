@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'Z:\Archivos\Portafolio\WebFeriaVirtual\WebFeriaVirtual.DALC\FeriaModel.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.DALC\FeriaModel.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

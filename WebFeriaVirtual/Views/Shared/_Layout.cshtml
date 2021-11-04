@@ -17,25 +17,35 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Web Feria Virtual", "TipoUsuario", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>
-                            @Html.ActionLink("Cerrar Sesión", "LogOut", "Auth")
+                            @Html.ActionLink("Cerrar Sesión", "LogOut", "AdmAuth")
                         </li>
                         <li>
-                            <a href="#">@User.Identity.Name</a> 
+                            <a href="#">@User.Identity.Name</a>
                         </li>
+
                     }
                     else
                     {
                         <li>
-                            @Html.ActionLink("Iniciar Sesión", "Login", "Auth")
+                            @Html.ActionLink("Iniciar como Admin", "LoginAdmin", "AdmAuth")
                         </li>
-                    }  
+                        <li>
+                            @Html.ActionLink("Iniciar como Cliente Interno", "LoginInt", "IntAuth")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Iniciar como Cliente Externo", "LoginExt", "UsuarioExt")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Iniciar como Productor", "LoginProduct", "Productor")
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
@@ -45,7 +55,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Date.ToString("dd/MM/yyyy") - Web Feria Virtual</p>
         </footer>
     </div>
 

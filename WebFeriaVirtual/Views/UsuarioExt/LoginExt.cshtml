@@ -1,0 +1,24 @@
+﻿@model WebFeriaVirtual.Negocio.UsuarioExterno
+@{
+    ViewBag.Title = "LoginExt";
+}
+
+<h2>Ingresa tus credenciales de usuario Cliente Externo</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(e => e.Correo, "Email")
+    <br />
+    @Html.TextBoxFor(e => e.Correo, new { type = "Email" })
+    <br />
+    @Html.LabelFor(e => e.Contraseña, "Contraseña")
+    <br />
+    @Html.PasswordFor(e => e.Contraseña)
+    <br />
+    <br />
+    <button>Ingresar</button>
+}
+
+<br />
+
+@TempData["Mensaje"]

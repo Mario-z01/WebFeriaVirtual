@@ -1,20 +1,23 @@
 ﻿@model WebFeriaVirtual.Negocio.UsuarioInterno
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "LoginInt";
 }
 
-<h2>Ingresa tus credenciales</h2>
+<h2>Ingresa tus credenciales de usuario Cliente Interno</h2>
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(u => u.Correo, "Correo")
-    @Html.TextBoxFor(u => u.Correo, new { type = "correo" })
+    @Html.LabelFor(u => u.Correo, "Email")
+    <br />
+    @Html.TextBoxFor(u => u.Correo, new { type = "Email" })
     <br />
     @Html.LabelFor(u => u.Contraseña, "Contraseña")
+    <br />
     @Html.PasswordFor(u => u.Contraseña)
     <br />
     <button>Ingresar</button>
 }
+
 <br />
 
 @TempData["Mensaje"]

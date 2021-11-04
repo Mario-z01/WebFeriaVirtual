@@ -1,0 +1,39 @@
+﻿@using WebFeriaVirtual.Negocio;
+@{
+    ViewBag.Title = "ListaProduct";
+}
+
+<h2>Lista usuarios Productor</h2>
+@{ List<Productor> productors = (List<Productor>)ViewBag.productors;}
+@Html.ActionLink("Crear Usuario Productor", "CreateProduct")
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Telefono</th>
+        <th>Direccion</th>
+        <th>Correo</th>
+        <th>Contraseña</th>
+        <th>Opciones</th>
+    </tr>
+    @foreach (var productor in productors)
+    {
+        <tr>
+            <td>@productor.Nombre</td>
+            <td>@productor.Edad</td>
+            <td>@productor.Telefono</td>
+            <td>@productor.Direccion</td>
+            <td>@productor.Correo</td>
+            <td>@productor.Contraseña</td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = productor.Id })
+                @Html.ActionLink("Modificar", "Edit", new { id = productor.Id })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@TempData["Mensaje"]
+

@@ -1,0 +1,33 @@
+﻿@using WebFeriaVirtual.Negocio;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de solicitudes realizadas</h2>
+
+@{ List<Solicitud> solicitudes = (List<Solicitud>)ViewBag.solicitudes;}
+@Html.ActionLink("Ingresar una nueva solicitud", "Create")
+<table border="1">
+    <tr>
+        <th>Tipo Producto</th>
+        <th>Calidad producto</th>
+        <th>Cantidad en Kg</th>
+        <th>Opciones</th>
+    </tr>
+    @foreach (var solicitud in solicitudes)
+    {
+        <tr>
+            <td>@solicitud.Tipo.Nombre</td>
+            <td>@solicitud.Calidad.Nombre</td>
+            <td>@solicitud.Cantidad</td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = solicitud.Id })
+                @Html.ActionLink("Modificar", "Edit", new { id = solicitud.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@TempData["Mensaje"]
+

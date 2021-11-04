@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADMINISTRADOR">
           <Key>
             <PropertyRef Name="ID_ADMIN" />
@@ -13,6 +13,13 @@
           <Property Name="USUARIO_ADMIN" Type="varchar2" MaxLength="50" Nullable="false" />
           <Property Name="EMAIL_ADMIN" Type="varchar2" MaxLength="100" Nullable="false" />
           <Property Name="CONTRASEÑA_ADMIN" Type="varchar2" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CALIDAD">
+          <Key>
+            <PropertyRef Name="ID_CALIDAD" />
+          </Key>
+          <Property Name="ID_CALIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_CALIDAD" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="CLIENTE_EXTERNO">
           <Key>
@@ -36,10 +43,135 @@
           <Property Name="EMAIL_CLIENTE1" Type="varchar2" MaxLength="100" Nullable="false" />
           <Property Name="CONTRASEÑA_CLIENTE1" Type="varchar2" MaxLength="20" Nullable="false" />
         </EntityType>
-        <Function Name="AGREGAADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
-          <Parameter Name="USERADMIN" Type="varchar2" Mode="In" />
-          <Parameter Name="EMAILADMIN" Type="varchar2" Mode="In" />
-          <Parameter Name="CONTRAADMIN" Type="varchar2" Mode="In" />
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTO" />
+          </Key>
+          <Property Name="ID_PRODUCTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="STOCK_PRODUCTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRECIO_PRODUCTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="IMAGEN_PRODUCTO" Type="varchar2" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="PRODUCTOR">
+          <Key>
+            <PropertyRef Name="ID_P" />
+          </Key>
+          <Property Name="ID_P" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_P" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="EDAD_P" Type="varchar2" MaxLength="2" Nullable="false" />
+          <Property Name="TELEFONO_P" Type="varchar2" MaxLength="9" Nullable="false" />
+          <Property Name="DIRECCION_P" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="EMAIL_P" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="CONTRASEÑA_P" Type="varchar2" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SOLICITUD">
+          <Key>
+            <PropertyRef Name="ID_SOLICITUD" />
+          </Key>
+          <Property Name="ID_SOLICITUD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_CALIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD_SOLICITUD" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPO">
+          <Key>
+            <PropertyRef Name="ID_TIPO" />
+          </Key>
+          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_PRODUCTO" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <Association Name="SYS_C007096">
+          <End Role="TIPO" Type="Self.TIPO" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO">
+              <PropertyRef Name="ID_TIPO" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="ID_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C007144">
+          <End Role="TIPO" Type="Self.TIPO" Multiplicity="1" />
+          <End Role="SOLICITUD" Type="Self.SOLICITUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO">
+              <PropertyRef Name="ID_TIPO" />
+            </Principal>
+            <Dependent Role="SOLICITUD">
+              <PropertyRef Name="ID_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C007145">
+          <End Role="CALIDAD" Type="Self.CALIDAD" Multiplicity="1" />
+          <End Role="SOLICITUD" Type="Self.SOLICITUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CALIDAD">
+              <PropertyRef Name="ID_CALIDAD" />
+            </Principal>
+            <Dependent Role="SOLICITUD">
+              <PropertyRef Name="ID_CALIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ACTUALIZAEXTERNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDCLIENTE2" Type="number" Mode="In" />
+          <Parameter Name="NOMCLIENTE2" Type="varchar2" Mode="In" />
+          <Parameter Name="DIRECLIENTE2" Type="varchar2" Mode="In" />
+          <Parameter Name="FONOCLIENTE2" Type="varchar2" Mode="In" />
+          <Parameter Name="CORREOCLIENTE2" Type="varchar2" Mode="In" />
+          <Parameter Name="CONTRACLIENTE2" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZAINTERNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDCLIENTE1" Type="number" Mode="In" />
+          <Parameter Name="NOMCLIENTE1" Type="varchar2" Mode="In" />
+          <Parameter Name="DIRECLIENTE1" Type="varchar2" Mode="In" />
+          <Parameter Name="FONOCLIENTE1" Type="varchar2" Mode="In" />
+          <Parameter Name="CORREOCLIENTE1" Type="varchar2" Mode="In" />
+          <Parameter Name="CONTRACLIENTE1" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZAPRODUCTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDPRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="TIPOID" Type="number" Mode="In" />
+          <Parameter Name="STOCKPRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="PRECIOPRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="IMAGENPRODUCTO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZAPRODUCTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDPRODUCTOR" Type="number" Mode="In" />
+          <Parameter Name="NOMPRODUCTOR" Type="varchar2" Mode="In" />
+          <Parameter Name="EDADPRODUCTOR" Type="varchar2" Mode="In" />
+          <Parameter Name="TELEFONOPRODUCTOR" Type="varchar2" Mode="In" />
+          <Parameter Name="DIREPRODUCTOR" Type="varchar2" Mode="In" />
+          <Parameter Name="EMAILPRODUCTOR" Type="varchar2" Mode="In" />
+          <Parameter Name="CONTRAPRODUCTOR" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZASOLICITUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDSOLICITUD" Type="number" Mode="In" />
+          <Parameter Name="TIPOID" Type="number" Mode="In" />
+          <Parameter Name="CALIDADID" Type="number" Mode="In" />
+          <Parameter Name="CANTIDADSOLICITUD" Type="number" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZATIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDTIPO" Type="number" Mode="In" />
+          <Parameter Name="NOMBRETIPO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="AGREGAPRODUCTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="TIPOID" Type="number" Mode="In" />
+          <Parameter Name="STOCKPRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="PRECIOPRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="IMAGENPRODUCTO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="AGREGAPRODUCTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="NOMPRODUCTOR" Type="varchar2" Mode="In" />
+          <Parameter Name="EDADPRODUCTOR" Type="varchar2" Mode="In" />
+          <Parameter Name="TELEFONOPRODUCTOR" Type="varchar2" Mode="In" />
+          <Parameter Name="DIREPRODUCTOR" Type="varchar2" Mode="In" />
+          <Parameter Name="EMAILPRODUCTOR" Type="varchar2" Mode="In" />
+          <Parameter Name="CONTRAPRODUCTOR" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="AGREGARCLIENTEEXT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
           <Parameter Name="NOMCLIENTE2" Type="varchar2" Mode="In" />
@@ -55,13 +187,55 @@
           <Parameter Name="CORREOCLIENTE1" Type="varchar2" Mode="In" />
           <Parameter Name="CONTRACLIENTE1" Type="varchar2" Mode="In" />
         </Function>
+        <Function Name="AGREGASOLICITUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="TIPOID" Type="number" Mode="In" />
+          <Parameter Name="CALIDADID" Type="number" Mode="In" />
+          <Parameter Name="CANTIDADSOLICITUD" Type="number" Mode="In" />
+        </Function>
+        <Function Name="AGREGATIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="NOMBRETIPO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ELIMINAEXTERNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDCLIENTE2" Type="number" Mode="In" />
+        </Function>
+        <Function Name="ELIMINAINTERNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDCLIENTE1" Type="number" Mode="In" />
+        </Function>
+        <Function Name="ELIMINAPRODUCTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDPRODUCTO" Type="number" Mode="In" />
+        </Function>
+        <Function Name="ELIMINAPRODUCTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDPRODUCTOR" Type="number" Mode="In" />
+        </Function>
+        <Function Name="ELIMINARTIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDTIPO" Type="number" Mode="In" />
+        </Function>
+        <Function Name="ELIMINASOLICITUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+          <Parameter Name="IDSOLICITUD" Type="number" Mode="In" />
+        </Function>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" Schema="USUARIOFERIA1" store:Type="Tables" />
+          <EntitySet Name="CALIDAD" EntityType="Self.CALIDAD" Schema="USUARIOFERIA1" store:Type="Tables" />
           <EntitySet Name="CLIENTE_EXTERNO" EntityType="Self.CLIENTE_EXTERNO" Schema="USUARIOFERIA1" store:Type="Tables" />
           <EntitySet Name="CLIENTE_INTERNO" EntityType="Self.CLIENTE_INTERNO" Schema="USUARIOFERIA1" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="USUARIOFERIA1" store:Type="Tables" />
+          <EntitySet Name="PRODUCTOR" EntityType="Self.PRODUCTOR" Schema="USUARIOFERIA1" store:Type="Tables" />
+          <EntitySet Name="SOLICITUD" EntityType="Self.SOLICITUD" Schema="USUARIOFERIA1" store:Type="Tables" />
+          <EntitySet Name="TIPO" EntityType="Self.TIPO" Schema="USUARIOFERIA1" store:Type="Tables" />
+          <AssociationSet Name="SYS_C007096" Association="Self.SYS_C007096">
+            <End Role="TIPO" EntitySet="TIPO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C007144" Association="Self.SYS_C007144">
+            <End Role="TIPO" EntitySet="TIPO" />
+            <End Role="SOLICITUD" EntitySet="SOLICITUD" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C007145" Association="Self.SYS_C007145">
+            <End Role="CALIDAD" EntitySet="CALIDAD" />
+            <End Role="SOLICITUD" EntitySet="SOLICITUD" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -96,14 +270,61 @@
           <Property Name="EMAIL_CLIENTE1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CONTRASEÑA_CLIENTE1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTO" />
+          </Key>
+          <Property Name="ID_PRODUCTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="STOCK_PRODUCTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRECIO_PRODUCTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="IMAGEN_PRODUCTO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TIPO" Relationship="Self.SYS_C007096" FromRole="PRODUCTO" ToRole="TIPO" />
+        </EntityType>
+        <EntityType Name="TIPO">
+          <Key>
+            <PropertyRef Name="ID_TIPO" />
+          </Key>
+          <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_PRODUCTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.SYS_C007096" FromRole="TIPO" ToRole="PRODUCTO" />
+          <NavigationProperty Name="SOLICITUD" Relationship="Model.SYS_C007144" FromRole="TIPO" ToRole="SOLICITUD" />
+        </EntityType>
+        <Association Name="SYS_C007096">
+          <End Role="TIPO" Type="Self.TIPO" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO">
+              <PropertyRef Name="ID_TIPO" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="ID_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FeriaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" />
           <EntitySet Name="CLIENTE_EXTERNO" EntityType="Self.CLIENTE_EXTERNO" />
           <EntitySet Name="CLIENTE_INTERNO" EntityType="Self.CLIENTE_INTERNO" />
-          <FunctionImport Name="AGREGAADMIN">
-            <Parameter Name="USERADMIN" Mode="In" Type="String" />
-            <Parameter Name="EMAILADMIN" Mode="In" Type="String" />
-            <Parameter Name="CONTRAADMIN" Mode="In" Type="String" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+          <EntitySet Name="TIPO" EntityType="Self.TIPO" />
+          <AssociationSet Name="SYS_C007096" Association="Self.SYS_C007096">
+            <End Role="TIPO" EntitySet="TIPO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <FunctionImport Name="AGREGAPRODUCTO">
+            <Parameter Name="TIPOID" Mode="In" Type="Decimal" />
+            <Parameter Name="STOCKPRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="PRECIOPRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="IMAGENPRODUCTO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AGREGAPRODUCTOR">
+            <Parameter Name="NOMPRODUCTOR" Mode="In" Type="String" />
+            <Parameter Name="EDADPRODUCTOR" Mode="In" Type="String" />
+            <Parameter Name="TELEFONOPRODUCTOR" Mode="In" Type="String" />
+            <Parameter Name="DIREPRODUCTOR" Mode="In" Type="String" />
+            <Parameter Name="EMAILPRODUCTOR" Mode="In" Type="String" />
+            <Parameter Name="CONTRAPRODUCTOR" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AGREGARCLIENTEEXT">
             <Parameter Name="NOMCLIENTE2" Mode="In" Type="String" />
@@ -119,7 +340,141 @@
             <Parameter Name="CORREOCLIENTE1" Mode="In" Type="String" />
             <Parameter Name="CONTRACLIENTE1" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ACTUALIZAPRODUCTO">
+            <Parameter Name="IDPRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="TIPOID" Mode="In" Type="Decimal" />
+            <Parameter Name="STOCKPRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="PRECIOPRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="IMAGENPRODUCTO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ACTUALIZATIPO">
+            <Parameter Name="IDTIPO" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMBRETIPO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AGREGATIPO">
+          <Parameter Name="NOMBRETIPO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINAPRODUCTO">
+          <Parameter Name="IDPRODUCTO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINARTIPO">
+          <Parameter Name="IDTIPO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="CALIDAD" EntityType="Model.CALIDAD" />
+          <EntitySet Name="SOLICITUD" EntityType="Model.SOLICITUD" />
+          <AssociationSet Name="SYS_C007145" Association="Model.SYS_C007145">
+            <End Role="CALIDAD" EntitySet="CALIDAD" />
+            <End Role="SOLICITUD" EntitySet="SOLICITUD" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C007144" Association="Model.SYS_C007144">
+            <End Role="TIPO" EntitySet="TIPO" />
+            <End Role="SOLICITUD" EntitySet="SOLICITUD" />
+          </AssociationSet>
+          <FunctionImport Name="ACTUALIZASOLICITUD">
+            <Parameter Name="IDSOLICITUD" Mode="In" Type="Decimal" />
+            <Parameter Name="TIPOID" Mode="In" Type="Decimal" />
+            <Parameter Name="CALIDADID" Mode="In" Type="Decimal" />
+            <Parameter Name="CANTIDADSOLICITUD" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="AGREGASOLICITUD">
+            <Parameter Name="TIPOID" Mode="In" Type="Decimal" />
+            <Parameter Name="CALIDADID" Mode="In" Type="Decimal" />
+            <Parameter Name="CANTIDADSOLICITUD" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINASOLICITUD">
+          <Parameter Name="IDSOLICITUD" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="PRODUCTOR" EntityType="Model.PRODUCTOR" />
+          <FunctionImport Name="ACTUALIZAEXTERNO">
+            <Parameter Name="IDCLIENTE2" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMCLIENTE2" Mode="In" Type="String" />
+            <Parameter Name="DIRECLIENTE2" Mode="In" Type="String" />
+            <Parameter Name="FONOCLIENTE2" Mode="In" Type="String" />
+            <Parameter Name="CORREOCLIENTE2" Mode="In" Type="String" />
+            <Parameter Name="CONTRACLIENTE2" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ACTUALIZAINTERNO">
+            <Parameter Name="IDCLIENTE1" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMCLIENTE1" Mode="In" Type="String" />
+            <Parameter Name="DIRECLIENTE1" Mode="In" Type="String" />
+            <Parameter Name="FONOCLIENTE1" Mode="In" Type="String" />
+            <Parameter Name="CORREOCLIENTE1" Mode="In" Type="String" />
+            <Parameter Name="CONTRACLIENTE1" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINAEXTERNO">
+          <Parameter Name="IDCLIENTE2" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINAINTERNO">
+          <Parameter Name="IDCLIENTE1" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="ACTUALIZAPRODUCTOR">
+            <Parameter Name="IDPRODUCTOR" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMPRODUCTOR" Mode="In" Type="String" />
+            <Parameter Name="EDADPRODUCTOR" Mode="In" Type="String" />
+            <Parameter Name="TELEFONOPRODUCTOR" Mode="In" Type="String" />
+            <Parameter Name="DIREPRODUCTOR" Mode="In" Type="String" />
+            <Parameter Name="EMAILPRODUCTOR" Mode="In" Type="String" />
+            <Parameter Name="CONTRAPRODUCTOR" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINAPRODUCTOR">
+            <Parameter Name="IDPRODUCTOR" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="CALIDAD">
+          <Key>
+            <PropertyRef Name="ID_CALIDAD" />
+          </Key>
+          <Property Name="ID_CALIDAD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="NOMBRE_CALIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SOLICITUD" Relationship="Model.SYS_C007145" FromRole="CALIDAD" ToRole="SOLICITUD" />
+        </EntityType>
+        <EntityType Name="SOLICITUD">
+          <Key>
+            <PropertyRef Name="ID_SOLICITUD" />
+          </Key>
+          <Property Name="ID_SOLICITUD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="ID_TIPO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="ID_CALIDAD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="CANTIDAD_SOLICITUD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="CALIDAD" Relationship="Model.SYS_C007145" FromRole="SOLICITUD" ToRole="CALIDAD" />
+          <NavigationProperty Name="TIPO" Relationship="Model.SYS_C007144" FromRole="SOLICITUD" ToRole="TIPO" />
+        </EntityType>
+        <Association Name="SYS_C007145">
+          <End Type="Model.CALIDAD" Role="CALIDAD" Multiplicity="1" />
+          <End Type="Model.SOLICITUD" Role="SOLICITUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CALIDAD">
+              <PropertyRef Name="ID_CALIDAD" />
+            </Principal>
+            <Dependent Role="SOLICITUD">
+              <PropertyRef Name="ID_CALIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C007144">
+          <End Type="Model.TIPO" Role="TIPO" Multiplicity="1" />
+          <End Type="Model.SOLICITUD" Role="SOLICITUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO">
+              <PropertyRef Name="ID_TIPO" />
+            </Principal>
+            <Dependent Role="SOLICITUD">
+              <PropertyRef Name="ID_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PRODUCTOR">
+          <Key>
+            <PropertyRef Name="ID_P" />
+          </Key>
+          <Property Name="ID_P" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="NOMBRE_P" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EDAD_P" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO_P" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION_P" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_P" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRASEÑA_P" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -160,9 +515,74 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AGREGAADMIN" FunctionName="Model.Store.AGREGAADMIN" />
+          <EntitySetMapping Name="PRODUCTO">
+            <EntityTypeMapping TypeName="Model.PRODUCTO">
+              <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+                <ScalarProperty Name="STOCK_PRODUCTO" ColumnName="STOCK_PRODUCTO" />
+                <ScalarProperty Name="PRECIO_PRODUCTO" ColumnName="PRECIO_PRODUCTO" />
+                <ScalarProperty Name="IMAGEN_PRODUCTO" ColumnName="IMAGEN_PRODUCTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO">
+            <EntityTypeMapping TypeName="Model.TIPO">
+              <MappingFragment StoreEntitySet="TIPO">
+                <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+                <ScalarProperty Name="NOMBRE_PRODUCTO" ColumnName="NOMBRE_PRODUCTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AGREGAPRODUCTO" FunctionName="Model.Store.AGREGAPRODUCTO" />
+          <FunctionImportMapping FunctionImportName="AGREGAPRODUCTOR" FunctionName="Model.Store.AGREGAPRODUCTOR" />
           <FunctionImportMapping FunctionImportName="AGREGARCLIENTEEXT" FunctionName="Model.Store.AGREGARCLIENTEEXT" />
           <FunctionImportMapping FunctionImportName="AGREGARCLIENTEINT" FunctionName="Model.Store.AGREGARCLIENTEINT" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZAPRODUCTO" FunctionName="Model.Store.ACTUALIZAPRODUCTO" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZATIPO" FunctionName="Model.Store.ACTUALIZATIPO" />
+          <FunctionImportMapping FunctionImportName="AGREGATIPO" FunctionName="Model.Store.AGREGATIPO" />
+          <FunctionImportMapping FunctionImportName="ELIMINAPRODUCTO" FunctionName="Model.Store.ELIMINAPRODUCTO" />
+          <FunctionImportMapping FunctionImportName="ELIMINARTIPO" FunctionName="Model.Store.ELIMINARTIPO" />
+          <EntitySetMapping Name="CALIDAD">
+            <EntityTypeMapping TypeName="Model.CALIDAD">
+              <MappingFragment StoreEntitySet="CALIDAD">
+                <ScalarProperty Name="NOMBRE_CALIDAD" ColumnName="NOMBRE_CALIDAD" />
+                <ScalarProperty Name="ID_CALIDAD" ColumnName="ID_CALIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLICITUD">
+            <EntityTypeMapping TypeName="Model.SOLICITUD">
+              <MappingFragment StoreEntitySet="SOLICITUD">
+                <ScalarProperty Name="CANTIDAD_SOLICITUD" ColumnName="CANTIDAD_SOLICITUD" />
+                <ScalarProperty Name="ID_CALIDAD" ColumnName="ID_CALIDAD" />
+                <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+                <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ACTUALIZASOLICITUD" FunctionName="Model.Store.ACTUALIZASOLICITUD" />
+          <FunctionImportMapping FunctionImportName="AGREGASOLICITUD" FunctionName="Model.Store.AGREGASOLICITUD" />
+          <FunctionImportMapping FunctionImportName="ELIMINASOLICITUD" FunctionName="Model.Store.ELIMINASOLICITUD" />
+          <EntitySetMapping Name="PRODUCTOR">
+            <EntityTypeMapping TypeName="Model.PRODUCTOR">
+              <MappingFragment StoreEntitySet="PRODUCTOR">
+                <ScalarProperty Name="CONTRASEÑA_P" ColumnName="CONTRASEÑA_P" />
+                <ScalarProperty Name="EMAIL_P" ColumnName="EMAIL_P" />
+                <ScalarProperty Name="DIRECCION_P" ColumnName="DIRECCION_P" />
+                <ScalarProperty Name="TELEFONO_P" ColumnName="TELEFONO_P" />
+                <ScalarProperty Name="EDAD_P" ColumnName="EDAD_P" />
+                <ScalarProperty Name="NOMBRE_P" ColumnName="NOMBRE_P" />
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ACTUALIZAEXTERNO" FunctionName="Model.Store.ACTUALIZAEXTERNO" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZAINTERNO" FunctionName="Model.Store.ACTUALIZAINTERNO" />
+          <FunctionImportMapping FunctionImportName="ELIMINAEXTERNO" FunctionName="Model.Store.ELIMINAEXTERNO" />
+          <FunctionImportMapping FunctionImportName="ELIMINAINTERNO" FunctionName="Model.Store.ELIMINAINTERNO" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZAPRODUCTOR" FunctionName="Model.Store.ACTUALIZAPRODUCTOR" />
+          <FunctionImportMapping FunctionImportName="ELIMINAPRODUCTOR" FunctionName="Model.Store.ELIMINAPRODUCTOR" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

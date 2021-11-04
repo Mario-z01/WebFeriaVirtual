@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "IndexExt";
+}
+
+<h2>Bienvenido usuario @User.Identity.Name</h2>
+<p>Seleccione una opción:</p>
+<br />
+@Html.ActionLink("Ingresar solicitud de compra", "Create", "Solicitud")
+<br />
+@Html.ActionLink("Listado de solicitudes de compra", "Index", "Solicitud")
+

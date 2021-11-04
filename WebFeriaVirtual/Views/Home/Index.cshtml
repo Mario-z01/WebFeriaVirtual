@@ -3,9 +3,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Inicio</h2>
-<p>Bienvenido a la feria virtual</p>
+<h2>Bienvenido Usuario Administrador</h2>
+<p>Seleccione una opción:</p>
 
-@Html.ActionLink("Lista de usuarios internos", "Index", "UsuarioInt")
+@Html.ActionLink("Lista de Usuarios", "ListaUsuarios", "Home")
 <br />
-@Html.ActionLink("Crear Usuario Interno", "Create", "UsuarioInt")
+@Html.ActionLink("Crear Usuarios", "ListaCrearUsuarios", "Home")
+<br />
+@Html.ActionLink("Lista solicitudes de compra", "Index", "Solicitud")
+<br />
+@Html.ActionLink("Lista productos", "Index", "Producto")

@@ -1,0 +1,41 @@
+﻿@using WebFeriaVirtual.Negocio;
+
+@{
+    ViewBag.Title = "ListaUsuExt";
+}
+
+<h2>Lista de usuarios Cliente Externo</h2>
+
+@{ List<UsuarioExterno> usuarioExternos = (List<UsuarioExterno>)ViewBag.usuarioExternos;}
+@Html.ActionLink("Crear Usuario cliente externo", "CreateUsuExt")
+<table border="1">
+    <tbody>
+        <tr>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Contraseña</th>
+            <th>Opciones</th>
+        </tr>
+        @foreach (var usuarioExterno in usuarioExternos)
+        {
+            <tr>
+                <td>@usuarioExterno.Nombre</td>
+                <td>@usuarioExterno.Direccion</td>
+                <td>@usuarioExterno.Telefono</td>
+                <td>@usuarioExterno.Correo</td>
+                <td>@usuarioExterno.Contraseña</td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Delete", new { id = usuarioExterno.Id })
+                    @Html.ActionLink("Modificar", "Edit", new { id = usuarioExterno.Id })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@TempData["Mensaje"]
+
+

@@ -1,0 +1,10 @@
+﻿@using WebFeriaVirtual.Negocio;
+@{
+    ViewBag.Title = "IndexInt";
+}
+
+<h2>Bienvenido usuario @User.Identity.Name</h2>
+<p>Seleccione una opción:</p>
+
+@Html.ActionLink("Comprar saldos", "SolicitudInt", "UsuarioInt")
+

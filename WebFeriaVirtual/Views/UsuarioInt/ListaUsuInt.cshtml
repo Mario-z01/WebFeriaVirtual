@@ -1,0 +1,42 @@
+﻿@using WebFeriaVirtual.Negocio;
+
+
+@{
+    ViewBag.Title = "ListaUsuInt";
+}
+
+<h2>Lista de usuarios Cliente Interno</h2>
+
+@{ List<UsuarioInterno> usuarioInternos = (List<UsuarioInterno>)ViewBag.usuarioInternos;}
+@Html.ActionLink("Crear Usuario Interno", "CreateUsuInt")
+<table border="1">
+    <tbody>
+        <tr>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Contraseña</th>
+            <th>Opciones</th>
+        </tr>
+        @foreach (var usuarioInterno in usuarioInternos)
+        {
+            <tr>
+                <td>@usuarioInterno.Nombre</td>
+                <td>@usuarioInterno.Direccion</td>
+                <td>@usuarioInterno.Telefono</td>
+                <td>@usuarioInterno.Correo</td>
+                <td>@usuarioInterno.Contraseña</td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Delete", new { id = usuarioInterno.Id })
+                    @Html.ActionLink("Modificar", "Edit", new { id = usuarioInterno.Id })
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@TempData["Mensaje"]
+

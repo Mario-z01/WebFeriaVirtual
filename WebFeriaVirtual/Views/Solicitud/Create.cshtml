@@ -1,0 +1,25 @@
+﻿@model WebFeriaVirtual.Negocio.Solicitud
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Ingresar una nueva solicitud</h2>
+
+@Html.ActionLink("Lista de solicitudes", "Index")
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(s => s.TipoId, "Seleccione el tipo de producto a solicitar")
+    <br />
+    @Html.DropDownListFor(s => s.TipoId, new SelectList(ViewBag.tipos, "Id", "Nombre"))
+    <br />
+    @Html.LabelFor(s => s.CalidadId, "Seleccione la calidad deseada del producto")
+    <br />
+    @Html.DropDownListFor(s => s.CalidadId, new SelectList(ViewBag.Calidad, "Id", "Nombre"))
+    <br />
+    @Html.LabelFor(s => s.Cantidad, "Indique la cantidad en kg que desea del producto")
+    <br />
+    @Html.TextBoxFor(s => s.Cantidad)
+    <br />
+    <br />
+    <button>Guardar datos</button>
+}

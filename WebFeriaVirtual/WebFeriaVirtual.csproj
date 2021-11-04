@@ -105,12 +105,21 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConsultorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\AdmAuthController.cs" />
+    <Compile Include="Controllers\IntAuthController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\ProductorController.cs" />
+    <Compile Include="Controllers\SolicitudController.cs" />
+    <Compile Include="Controllers\TransportistaController.cs" />
+    <Compile Include="Controllers\UsuarioExtController.cs" />
     <Compile Include="Controllers\UsuarioIntController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -127,9 +136,34 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Auth\Login.cshtml" />
-    <Content Include="Views\UsuarioInt\Index.cshtml" />
-    <Content Include="Views\UsuarioInt\Create.cshtml" />
+    <Content Include="Views\AdmAuth\LoginAdmin.cshtml" />
+    <Content Include="Views\UsuarioInt\ListaUsuInt.cshtml" />
+    <Content Include="Views\IntAuth\LoginInt.cshtml" />
+    <Content Include="Views\Home\TipoUsuario.cshtml" />
+    <Content Include="Views\UsuarioInt\IndexInt.cshtml" />
+    <Content Include="Views\UsuarioInt\SolicitudInt.cshtml" />
+    <Content Include="Views\UsuarioInt\CreateUsuInt.cshtml" />
+    <Content Include="Views\Home\ListaUsuarios.cshtml" />
+    <Content Include="Views\UsuarioExt\IndexExt.cshtml" />
+    <Content Include="Views\UsuarioExt\ListaUsuExt.cshtml" />
+    <Content Include="Views\Transportista\ListaTrans.cshtml" />
+    <Content Include="Views\Productor\ListaProduct.cshtml" />
+    <Content Include="Views\Consultor\ListaConsul.cshtml" />
+    <Content Include="Views\Home\ListaCrearUsuarios.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Producto\Create.cshtml" />
+    <Content Include="Views\Productor\CreateProduct.cshtml" />
+    <Content Include="Views\Productor\LoginProduct.cshtml" />
+    <Content Include="Views\Productor\IndexProduct.cshtml" />
+    <Content Include="Views\Producto\Edit.cshtml" />
+    <Content Include="Views\UsuarioExt\CreateUsuExt.cshtml" />
+    <Content Include="Views\UsuarioExt\LoginExt.cshtml" />
+    <Content Include="Views\Solicitud\Create.cshtml" />
+    <Content Include="Views\Solicitud\Index.cshtml" />
+    <Content Include="Views\Solicitud\Edit.cshtml" />
+    <Content Include="Views\UsuarioInt\Edit.cshtml" />
+    <Content Include="Views\UsuarioExt\Edit.cshtml" />
+    <Content Include="Views\Productor\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

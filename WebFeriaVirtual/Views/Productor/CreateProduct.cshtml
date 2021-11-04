@@ -1,0 +1,37 @@
+﻿@model WebFeriaVirtual.Negocio.Productor
+@{
+    ViewBag.Title = "CreateProduct";
+}
+
+<h2>Agregar nuevo usuario Productor</h2>
+@Html.ActionLink("Lista de usuarios Productor", "ListaProduct")
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(p => p.Nombre)
+    <br />
+    @Html.TextBoxFor(p => p.Nombre)
+    <br />
+    @Html.LabelFor(p => p.Edad)
+    <br />
+    @Html.TextBoxFor(p => p.Edad)
+    <br />
+    @Html.LabelFor(p => p.Telefono)
+    <br />
+    @Html.TextBoxFor(p => p.Telefono)
+    <br />
+    @Html.LabelFor(p => p.Direccion)
+    <br />
+    @Html.TextBoxFor(p => p.Direccion)
+    <br />
+    @Html.LabelFor(p => p.Correo)
+    <br />
+    @Html.TextBoxFor(p => p.Correo)
+    <br />
+    @Html.LabelFor(p => p.Contraseña)
+    <br />
+    @Html.PasswordFor(p => p.Contraseña)
+    <br />
+    <br />
+    <button>Guardar datos</button>
+}
+@Html.ActionLink("Volver", "ListaCrearUsuarios", "Home")

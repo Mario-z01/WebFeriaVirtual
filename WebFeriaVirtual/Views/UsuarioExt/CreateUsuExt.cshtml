@@ -1,0 +1,32 @@
+﻿@model WebFeriaVirtual.Negocio.UsuarioExterno
+@{
+    ViewBag.Title = "CreateUsuExt";
+}
+
+<h2>Agregar nuevo Usuario cliente Externo</h2>
+@Html.ActionLink("Lista de usuarios cliente externo", "ListaUsuExt")
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(e => e.Nombre)
+    <br />
+    @Html.TextBoxFor(e => e.Nombre)
+    <br />
+    @Html.LabelFor(e => e.Direccion)
+    <br />
+    @Html.TextBoxFor(e => e.Direccion)
+    <br />
+    @Html.LabelFor(e => e.Telefono)
+    <br />
+    @Html.TextBoxFor(e => e.Telefono)
+    <br />
+    @Html.LabelFor(e => e.Correo)
+    <br />
+    @Html.TextBoxFor(e => e.Correo)
+    <br />
+    @Html.LabelFor(e => e.Contraseña)
+    <br />
+    @Html.PasswordFor(e => e.Contraseña)
+    <br />
+    <br />
+    <button>Guardar datos</button>
+}

@@ -8,24 +8,25 @@ using System.Web.Mvc;
 
 namespace WebFeriaVirtual.Controllers
 {
-    public class AuthController : Controller
+    public class IntAuthController : Controller
     {
-        public ActionResult Login()
+        
+        public ActionResult LoginInt()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(UsuarioInterno usuarioInt, string ReturnUrl)
+        public ActionResult LoginInt(UsuarioInterno usuarioInt, string ReturnUrl)
         {
-            if(IsValid(usuarioInt))
+            if (IsValid(usuarioInt))
             {
                 FormsAuthentication.SetAuthCookie(usuarioInt.Correo, false);
-                if(ReturnUrl != null)
+                if (ReturnUrl != null)
                 {
                     return Redirect(ReturnUrl);
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("IndexInt", "UsuarioInt");
             }
             TempData["Mensaje"] = "Credenciales Incorrectas";
             return View(usuarioInt);
@@ -37,16 +38,11 @@ namespace WebFeriaVirtual.Controllers
             return usuarioInt.Autenticar();
         }
 
-
-
-
-
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
-                                    
+            return RedirectToAction("IndexInt", "UsuarioInt");
+
         }
     }
-    
 }

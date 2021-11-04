@@ -4,10 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c120caad7ed246cfa67c20ccea65a551" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="Model.ADMINISTRADOR" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CLIENTE_EXTERNO" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CLIENTE_INTERNO" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="a22ec79ab7e148c7ac59a5ea3d69f2a8" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.ADMINISTRADOR" Width="1.5" PointX="5.625" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLIENTE_EXTERNO" Width="1.5" PointX="7.625" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLIENTE_INTERNO" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRODUCTO" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TIPO" Width="1.5" PointX="0.5" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="Model.SYS_C007096" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.CALIDAD" Width="1.5" PointX="0.5" PointY="4.375" />
+        <EntityTypeShape EntityType="Model.SOLICITUD" Width="1.5" PointX="3" PointY="3.25" />
+        <AssociationConnector Association="Model.SYS_C007145" />
+        <AssociationConnector Association="Model.SYS_C007144" />
+        <EntityTypeShape EntityType="Model.PRODUCTOR" Width="1.5" PointX="5.5" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

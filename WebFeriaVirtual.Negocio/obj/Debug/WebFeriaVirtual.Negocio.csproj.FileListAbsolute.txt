@@ -24,3 +24,16 @@ Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual.Negocio\obj\Debug\
 Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual.Negocio\obj\Debug\WebFeriaVirtual.Negocio.csproj.CopyComplete
 Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual.Negocio\obj\Debug\WebFeriaVirtual.Negocio.dll
 Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual.Negocio\obj\Debug\WebFeriaVirtual.Negocio.pdb
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\bin\Debug\WebFeriaVirtual.Negocio.dll.config
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\bin\Debug\WebFeriaVirtual.Negocio.dll
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\bin\Debug\WebFeriaVirtual.Negocio.pdb
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\bin\Debug\EntityFramework.dll
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\bin\Debug\WebFeriaVirtual.DALC.dll
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\bin\Debug\WebFeriaVirtual.DALC.pdb
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\bin\Debug\WebFeriaVirtual.DALC.dll.config
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\bin\Debug\EntityFramework.xml
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\obj\Debug\WebFeriaVirtual.Negocio.csprojAssemblyReference.cache
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\obj\Debug\WebFeriaVirtual.Negocio.csproj.CoreCompileInputs.cache
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\obj\Debug\WebFeriaVirtual.Negocio.csproj.CopyComplete
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\obj\Debug\WebFeriaVirtual.Negocio.dll
+Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual.Negocio\obj\Debug\WebFeriaVirtual.Negocio.pdb

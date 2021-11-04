@@ -31,14 +31,61 @@
     <Property Name="EMAIL_CLIENTE1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CONTRASEÑA_CLIENTE1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
+  <EntityType Name="PRODUCTO">
+    <Key>
+      <PropertyRef Name="ID_PRODUCTO" />
+    </Key>
+    <Property Name="ID_PRODUCTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="STOCK_PRODUCTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PRECIO_PRODUCTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="IMAGEN_PRODUCTO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TIPO" Relationship="Self.SYS_C007096" FromRole="PRODUCTO" ToRole="TIPO" />
+  </EntityType>
+  <EntityType Name="TIPO">
+    <Key>
+      <PropertyRef Name="ID_TIPO" />
+    </Key>
+    <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE_PRODUCTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.SYS_C007096" FromRole="TIPO" ToRole="PRODUCTO" />
+    <NavigationProperty Name="SOLICITUD" Relationship="Model.SYS_C007144" FromRole="TIPO" ToRole="SOLICITUD" />
+  </EntityType>
+  <Association Name="SYS_C007096">
+    <End Role="TIPO" Type="Self.TIPO" Multiplicity="1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO">
+        <PropertyRef Name="ID_TIPO" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="ID_TIPO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="FeriaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" />
     <EntitySet Name="CLIENTE_EXTERNO" EntityType="Self.CLIENTE_EXTERNO" />
     <EntitySet Name="CLIENTE_INTERNO" EntityType="Self.CLIENTE_INTERNO" />
-    <FunctionImport Name="AGREGAADMIN">
-      <Parameter Name="USERADMIN" Mode="In" Type="String" />
-      <Parameter Name="EMAILADMIN" Mode="In" Type="String" />
-      <Parameter Name="CONTRAADMIN" Mode="In" Type="String" />
+    <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+    <EntitySet Name="TIPO" EntityType="Self.TIPO" />
+    <AssociationSet Name="SYS_C007096" Association="Self.SYS_C007096">
+      <End Role="TIPO" EntitySet="TIPO" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <FunctionImport Name="AGREGAPRODUCTO">
+      <Parameter Name="TIPOID" Mode="In" Type="Decimal" />
+      <Parameter Name="STOCKPRODUCTO" Mode="In" Type="Decimal" />
+      <Parameter Name="PRECIOPRODUCTO" Mode="In" Type="Decimal" />
+      <Parameter Name="IMAGENPRODUCTO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AGREGAPRODUCTOR">
+      <Parameter Name="NOMPRODUCTOR" Mode="In" Type="String" />
+      <Parameter Name="EDADPRODUCTOR" Mode="In" Type="String" />
+      <Parameter Name="TELEFONOPRODUCTOR" Mode="In" Type="String" />
+      <Parameter Name="DIREPRODUCTOR" Mode="In" Type="String" />
+      <Parameter Name="EMAILPRODUCTOR" Mode="In" Type="String" />
+      <Parameter Name="CONTRAPRODUCTOR" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="AGREGARCLIENTEEXT">
       <Parameter Name="NOMCLIENTE2" Mode="In" Type="String" />
@@ -54,5 +101,139 @@
       <Parameter Name="CORREOCLIENTE1" Mode="In" Type="String" />
       <Parameter Name="CONTRACLIENTE1" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ACTUALIZAPRODUCTO">
+      <Parameter Name="IDPRODUCTO" Mode="In" Type="Decimal" />
+      <Parameter Name="TIPOID" Mode="In" Type="Decimal" />
+      <Parameter Name="STOCKPRODUCTO" Mode="In" Type="Decimal" />
+      <Parameter Name="PRECIOPRODUCTO" Mode="In" Type="Decimal" />
+      <Parameter Name="IMAGENPRODUCTO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ACTUALIZATIPO">
+      <Parameter Name="IDTIPO" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMBRETIPO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AGREGATIPO">
+      <Parameter Name="NOMBRETIPO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ELIMINAPRODUCTO">
+      <Parameter Name="IDPRODUCTO" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="ELIMINARTIPO">
+      <Parameter Name="IDTIPO" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="CALIDAD" EntityType="Model.CALIDAD" />
+    <EntitySet Name="SOLICITUD" EntityType="Model.SOLICITUD" />
+    <AssociationSet Name="SYS_C007145" Association="Model.SYS_C007145">
+      <End Role="CALIDAD" EntitySet="CALIDAD" />
+      <End Role="SOLICITUD" EntitySet="SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007144" Association="Model.SYS_C007144">
+      <End Role="TIPO" EntitySet="TIPO" />
+      <End Role="SOLICITUD" EntitySet="SOLICITUD" />
+    </AssociationSet>
+    <FunctionImport Name="ACTUALIZASOLICITUD">
+      <Parameter Name="IDSOLICITUD" Mode="In" Type="Decimal" />
+      <Parameter Name="TIPOID" Mode="In" Type="Decimal" />
+      <Parameter Name="CALIDADID" Mode="In" Type="Decimal" />
+      <Parameter Name="CANTIDADSOLICITUD" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="AGREGASOLICITUD">
+      <Parameter Name="TIPOID" Mode="In" Type="Decimal" />
+      <Parameter Name="CALIDADID" Mode="In" Type="Decimal" />
+      <Parameter Name="CANTIDADSOLICITUD" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="ELIMINASOLICITUD">
+      <Parameter Name="IDSOLICITUD" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="PRODUCTOR" EntityType="Model.PRODUCTOR" />
+    <FunctionImport Name="ACTUALIZAEXTERNO">
+      <Parameter Name="IDCLIENTE2" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMCLIENTE2" Mode="In" Type="String" />
+      <Parameter Name="DIRECLIENTE2" Mode="In" Type="String" />
+      <Parameter Name="FONOCLIENTE2" Mode="In" Type="String" />
+      <Parameter Name="CORREOCLIENTE2" Mode="In" Type="String" />
+      <Parameter Name="CONTRACLIENTE2" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ACTUALIZAINTERNO">
+      <Parameter Name="IDCLIENTE1" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMCLIENTE1" Mode="In" Type="String" />
+      <Parameter Name="DIRECLIENTE1" Mode="In" Type="String" />
+      <Parameter Name="FONOCLIENTE1" Mode="In" Type="String" />
+      <Parameter Name="CORREOCLIENTE1" Mode="In" Type="String" />
+      <Parameter Name="CONTRACLIENTE1" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ELIMINAEXTERNO">
+      <Parameter Name="IDCLIENTE2" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="ELIMINAINTERNO">
+      <Parameter Name="IDCLIENTE1" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="ACTUALIZAPRODUCTOR">
+      <Parameter Name="IDPRODUCTOR" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMPRODUCTOR" Mode="In" Type="String" />
+      <Parameter Name="EDADPRODUCTOR" Mode="In" Type="String" />
+      <Parameter Name="TELEFONOPRODUCTOR" Mode="In" Type="String" />
+      <Parameter Name="DIREPRODUCTOR" Mode="In" Type="String" />
+      <Parameter Name="EMAILPRODUCTOR" Mode="In" Type="String" />
+      <Parameter Name="CONTRAPRODUCTOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ELIMINAPRODUCTOR">
+      <Parameter Name="IDPRODUCTOR" Mode="In" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
+  <EntityType Name="CALIDAD">
+    <Key>
+      <PropertyRef Name="ID_CALIDAD" />
+    </Key>
+    <Property Name="ID_CALIDAD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="NOMBRE_CALIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SOLICITUD" Relationship="Model.SYS_C007145" FromRole="CALIDAD" ToRole="SOLICITUD" />
+  </EntityType>
+  <EntityType Name="SOLICITUD">
+    <Key>
+      <PropertyRef Name="ID_SOLICITUD" />
+    </Key>
+    <Property Name="ID_SOLICITUD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="ID_TIPO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="ID_CALIDAD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="CANTIDAD_SOLICITUD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <NavigationProperty Name="CALIDAD" Relationship="Model.SYS_C007145" FromRole="SOLICITUD" ToRole="CALIDAD" />
+    <NavigationProperty Name="TIPO" Relationship="Model.SYS_C007144" FromRole="SOLICITUD" ToRole="TIPO" />
+  </EntityType>
+  <Association Name="SYS_C007145">
+    <End Type="Model.CALIDAD" Role="CALIDAD" Multiplicity="1" />
+    <End Type="Model.SOLICITUD" Role="SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CALIDAD">
+        <PropertyRef Name="ID_CALIDAD" />
+      </Principal>
+      <Dependent Role="SOLICITUD">
+        <PropertyRef Name="ID_CALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007144">
+    <End Type="Model.TIPO" Role="TIPO" Multiplicity="1" />
+    <End Type="Model.SOLICITUD" Role="SOLICITUD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO">
+        <PropertyRef Name="ID_TIPO" />
+      </Principal>
+      <Dependent Role="SOLICITUD">
+        <PropertyRef Name="ID_TIPO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PRODUCTOR">
+    <Key>
+      <PropertyRef Name="ID_P" />
+    </Key>
+    <Property Name="ID_P" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="NOMBRE_P" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EDAD_P" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO_P" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="DIRECCION_P" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL_P" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CONTRASEÑA_P" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

@@ -39,7 +39,7 @@ namespace WebFeriaVirtual.Negocio
 
             }).ToList();
         }
-         public bool Save()
+        public bool Save()
         {
             try
             {
@@ -53,6 +53,50 @@ namespace WebFeriaVirtual.Negocio
                 return false;
             }
 
+        }
+
+        public UsuarioInterno Find(int id)
+        {
+            return this.db.CLIENTE_INTERNO.Select(c => new UsuarioInterno()
+            {
+                Id = c.ID_CLIENTE1,
+                Nombre = c.NOMBRE_CLIENTE1,
+                Direccion = c.DIRECCION_CLIENTE1,
+                Telefono = c.TELEFONO_CLIENTE1,
+                Correo = c.EMAIL_CLIENTE1,
+                Contraseña = c.CONTRASEÑA_CLIENTE1
+            }).Where(c => c.Id == id).FirstOrDefault();
+        }
+
+        public bool Update()
+        {
+            try
+            {
+                db.ACTUALIZAINTERNO(this.Id,this.Nombre, this.Direccion,
+                    this.Telefono, this.Correo, this.Contraseña);
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+        }
+
+        public bool Delete(int id)
+        {
+            try
+            {
+                db.ELIMINAINTERNO(id);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
     }
 }
