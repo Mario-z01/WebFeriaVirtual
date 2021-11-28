@@ -10,11 +10,13 @@ namespace WebFeriaVirtual.Negocio
     public class UsuarioInterno
     {
         public decimal Id { get; set; }
+        public decimal IdRegion { get; set; }
         public String Nombre { get; set; }
         public String Direccion { get; set; }
         public String Telefono { get; set; }
         public String Correo { get; set; }
         public String Contraseña { get; set; }
+        public Region Region { get; set; }
 
         FeriaEntities db = new FeriaEntities();
 
@@ -31,11 +33,17 @@ namespace WebFeriaVirtual.Negocio
             return this.db.CLIENTE_INTERNO.Select(c => new UsuarioInterno()
             {
                 Id = c.ID_CLIENTE1,
+                IdRegion = c.ID_REGION,
                 Nombre = c.NOMBRE_CLIENTE1,
                 Direccion = c.DIRECCION_CLIENTE1,
                 Telefono = c.TELEFONO_CLIENTE1,
                 Correo = c.EMAIL_CLIENTE1,
-                Contraseña = c.CONTRASEÑA_CLIENTE1
+                Contraseña = c.CONTRASEÑA_CLIENTE1,
+                Region = new Region()
+                {
+                    Id = c.ID_REGION,
+                    Nombre = c.REGION.NOMBRE_REGION
+                }
 
             }).ToList();
         }
@@ -44,7 +52,7 @@ namespace WebFeriaVirtual.Negocio
             try
             {
                 //llamando al PA para crear usuario ClienteInt
-                db.AGREGARCLIENTEINT(this.Nombre, this.Direccion,
+                db.AGREGARCLIENTEINT(this.IdRegion, this.Nombre, this.Direccion,
                     this.Telefono, this.Correo, this.Contraseña);
                 return true;
             }
@@ -60,11 +68,17 @@ namespace WebFeriaVirtual.Negocio
             return this.db.CLIENTE_INTERNO.Select(c => new UsuarioInterno()
             {
                 Id = c.ID_CLIENTE1,
+                IdRegion = c.ID_REGION,
                 Nombre = c.NOMBRE_CLIENTE1,
                 Direccion = c.DIRECCION_CLIENTE1,
                 Telefono = c.TELEFONO_CLIENTE1,
                 Correo = c.EMAIL_CLIENTE1,
-                Contraseña = c.CONTRASEÑA_CLIENTE1
+                Contraseña = c.CONTRASEÑA_CLIENTE1,
+                Region = new Region()
+                {
+                    Id = c.ID_REGION,
+                    Nombre = c.REGION.NOMBRE_REGION
+                }
             }).Where(c => c.Id == id).FirstOrDefault();
         }
 
@@ -72,7 +86,7 @@ namespace WebFeriaVirtual.Negocio
         {
             try
             {
-                db.ACTUALIZAINTERNO(this.Id,this.Nombre, this.Direccion,
+                db.ACTUALIZAINTERNO(this.Id, this.IdRegion, this.Nombre, this.Direccion,
                     this.Telefono, this.Correo, this.Contraseña);
 
                 return true;

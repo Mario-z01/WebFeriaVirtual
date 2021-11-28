@@ -1,0 +1,21 @@
+﻿@model WebFeriaVirtual.Negocio.Transportista
+@{
+    ViewBag.Title = "LoginTransportista";
+}
+
+<h2>Ingresa tus credenciales de Usuario Transportista</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(t => t.Correo, "Correo")
+    @Html.TextBoxFor(t => t.Correo, new { type = "Correo" })
+    <br />
+    @Html.LabelFor(t => t.Contraseña, "Contraseña")
+    @Html.PasswordFor(t => t.Contraseña)
+    <br />
+    <button>Ingresar</button>
+}
+
+<br />
+
+@TempData["Mensaje"]

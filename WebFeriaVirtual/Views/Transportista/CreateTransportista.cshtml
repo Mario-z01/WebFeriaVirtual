@@ -1,0 +1,37 @@
+﻿@model WebFeriaVirtual.Negocio.Transportista
+@{
+    ViewBag.Title = "CreateTransportista";
+}
+
+<h2>Agregar nuevo usuario transportista</h2>
+@Html.ActionLink("Lista de usuarios Transportista", "ListaTransportista")
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(t => t.Nombre)
+    <br />
+    @Html.TextBoxFor(t => t.Nombre)
+    <br />
+    @Html.LabelFor(t => t.Edad)
+    <br />
+    @Html.TextBoxFor(t => t.Edad)
+    <br />
+    @Html.LabelFor(t => t.Telefono)
+    <br />
+    @Html.TextBoxFor(t => t.Telefono)
+    <br />
+    @Html.LabelFor(t => t.Correo)
+    <br />
+    @Html.TextBoxFor(t => t.Correo)
+    <br />
+    @Html.LabelFor(t => t.Contraseña)
+    <br />
+    @Html.PasswordFor(t => t.Contraseña)
+    <br />
+    @Html.LabelFor(t => t.IdEmpresa, "Empresa")
+    <br />
+    @Html.DropDownListFor(t => t.IdEmpresa, new SelectList(ViewBag.empresas, "Id", "Nombre"))
+    <br />
+    <br />
+    <button>Guardar datos</button>
+}
+@Html.ActionLink("Volver", "ListaCrearUsuarios", "Home")

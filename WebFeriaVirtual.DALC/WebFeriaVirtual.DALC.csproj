@@ -60,6 +60,9 @@
     <Compile Include="CLIENTE_INTERNO.cs">
       <DependentUpon>FeriaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EMPRESA.cs">
+      <DependentUpon>FeriaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FeriaModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,10 +85,16 @@
       <DependentUpon>FeriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REGION.cs">
+      <DependentUpon>FeriaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SOLICITUD.cs">
       <DependentUpon>FeriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TIPO.cs">
+      <DependentUpon>FeriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TRANSPORTISTA.cs">
       <DependentUpon>FeriaModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

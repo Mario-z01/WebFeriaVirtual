@@ -36,12 +36,18 @@ namespace WebFeriaVirtual.Controllers
 
         public ActionResult CreateUsuInt()
         {
+            EnviarRegion();
             return View();
+        }
+
+        private void EnviarRegion()
+        {
+            ViewBag.regiones = new Region().ReadAll();
         }
 
         // POST: UsuarioInt/CreateInt
         [HttpPost]
-        public ActionResult CreateUsuInt([Bind(Include = "Nombre,Direccion,Telefono,Correo,Contraseña")]UsuarioInterno usuarioInterno)
+        public ActionResult CreateUsuInt([Bind(Include = "IdRegion, Nombre,Direccion,Telefono,Correo,Contraseña")]UsuarioInterno usuarioInterno)
         {
             try
             {
@@ -66,13 +72,14 @@ namespace WebFeriaVirtual.Controllers
                 TempData["mensaje"] = "El usuario no existe";
                 return RedirectToAction("ListaUsuInt");
             }
+            EnviarRegion();
 
             return View(u);
         }
 
         // POST: Producto/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Direccion,Telefono,Correo,Contraseña")]UsuarioInterno usuarioInterno)
+        public ActionResult Edit([Bind(Include = "Id,IdRegion,Nombre,Direccion,Telefono,Correo,Contraseña")]UsuarioInterno usuarioInterno)
         {
             try
             {

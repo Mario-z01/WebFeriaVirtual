@@ -99,12 +99,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -135,7 +129,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\AdmAuth\LoginAdmin.cshtml" />
     <Content Include="Views\UsuarioInt\ListaUsuInt.cshtml" />
     <Content Include="Views\IntAuth\LoginInt.cshtml" />
@@ -146,7 +139,7 @@
     <Content Include="Views\Home\ListaUsuarios.cshtml" />
     <Content Include="Views\UsuarioExt\IndexExt.cshtml" />
     <Content Include="Views\UsuarioExt\ListaUsuExt.cshtml" />
-    <Content Include="Views\Transportista\ListaTrans.cshtml" />
+    <Content Include="Views\Transportista\ListaTransportista.cshtml" />
     <Content Include="Views\Productor\ListaProduct.cshtml" />
     <Content Include="Views\Consultor\ListaConsul.cshtml" />
     <Content Include="Views\Home\ListaCrearUsuarios.cshtml" />
@@ -164,6 +157,10 @@
     <Content Include="Views\UsuarioInt\Edit.cshtml" />
     <Content Include="Views\UsuarioExt\Edit.cshtml" />
     <Content Include="Views\Productor\Edit.cshtml" />
+    <Content Include="Views\Transportista\Index.cshtml" />
+    <Content Include="Views\Transportista\CreateTransportista.cshtml" />
+    <Content Include="Views\Transportista\LoginTransportista.cshtml" />
+    <Content Include="Views\Transportista\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -174,6 +171,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebFeriaVirtual.Negocio\WebFeriaVirtual.Negocio.csproj">

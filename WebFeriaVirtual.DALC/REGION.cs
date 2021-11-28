@@ -12,16 +12,16 @@ namespace WebFeriaVirtual.DALC
     using System;
     using System.Collections.Generic;
     
-    public partial class CLIENTE_INTERNO
+    public partial class REGION
     {
-        public decimal ID_CLIENTE1 { get; set; }
-        public string NOMBRE_CLIENTE1 { get; set; }
-        public string DIRECCION_CLIENTE1 { get; set; }
-        public string TELEFONO_CLIENTE1 { get; set; }
-        public string EMAIL_CLIENTE1 { get; set; }
-        public string CONTRASEÑA_CLIENTE1 { get; set; }
-        public decimal ID_REGION { get; set; }
+        public REGION()
+        {
+            this.CLIENTE_INTERNO = new HashSet<CLIENTE_INTERNO>();
+        }
     
-        public virtual REGION REGION { get; set; }
+        public decimal ID_REGION { get; set; }
+        public string NOMBRE_REGION { get; set; }
+    
+        public virtual ICollection<CLIENTE_INTERNO> CLIENTE_INTERNO { get; set; }
     }
 }

@@ -12,16 +12,16 @@ namespace WebFeriaVirtual.DALC
     using System;
     using System.Collections.Generic;
     
-    public partial class CLIENTE_INTERNO
+    public partial class TRANSPORTISTA
     {
-        public decimal ID_CLIENTE1 { get; set; }
-        public string NOMBRE_CLIENTE1 { get; set; }
-        public string DIRECCION_CLIENTE1 { get; set; }
-        public string TELEFONO_CLIENTE1 { get; set; }
-        public string EMAIL_CLIENTE1 { get; set; }
-        public string CONTRASEÑA_CLIENTE1 { get; set; }
-        public decimal ID_REGION { get; set; }
+        public decimal ID_T { get; set; }
+        public string NOMBRE_T { get; set; }
+        public string EDAD_T { get; set; }
+        public string TELEFONO_T { get; set; }
+        public string EMAIL_T { get; set; }
+        public string CONTRASEÑA_T { get; set; }
+        public decimal ID_EMPRESA { get; set; }
     
-        public virtual REGION REGION { get; set; }
+        public virtual EMPRESA EMPRESA { get; set; }
     }
 }

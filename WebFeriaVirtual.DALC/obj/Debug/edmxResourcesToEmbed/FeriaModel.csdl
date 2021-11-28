@@ -30,6 +30,8 @@
     <Property Name="TELEFONO_CLIENTE1" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EMAIL_CLIENTE1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CONTRASEÑA_CLIENTE1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_REGION" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <NavigationProperty Name="REGION" Relationship="Model.SYS_C007230" FromRole="CLIENTE_INTERNO" ToRole="REGION" />
   </EntityType>
   <EntityType Name="PRODUCTO">
     <Key>
@@ -95,6 +97,7 @@
       <Parameter Name="CONTRACLIENTE2" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="AGREGARCLIENTEINT">
+      <Parameter Name="IDREGION" Mode="In" Type="Decimal" />
       <Parameter Name="NOMCLIENTE1" Mode="In" Type="String" />
       <Parameter Name="DIRECLIENTE1" Mode="In" Type="String" />
       <Parameter Name="FONOCLIENTE1" Mode="In" Type="String" />
@@ -156,6 +159,7 @@
     </FunctionImport>
     <FunctionImport Name="ACTUALIZAINTERNO">
       <Parameter Name="IDCLIENTE1" Mode="In" Type="Decimal" />
+      <Parameter Name="IDREGION" Mode="In" Type="Decimal" />
       <Parameter Name="NOMCLIENTE1" Mode="In" Type="String" />
       <Parameter Name="DIRECLIENTE1" Mode="In" Type="String" />
       <Parameter Name="FONOCLIENTE1" Mode="In" Type="String" />
@@ -180,6 +184,47 @@
     <FunctionImport Name="ELIMINAPRODUCTOR">
       <Parameter Name="IDPRODUCTOR" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <EntitySet Name="TRANSPORTISTA" EntityType="Model.TRANSPORTISTA" />
+    <FunctionImport Name="ACTUALIZAEMPRESA">
+      <Parameter Name="IDEMPRESA" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMBREEMPRESA" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ACTUALIZATRANSPORTISTA">
+      <Parameter Name="IDTRANSPORTISTA" Mode="In" Type="Decimal" />
+      <Parameter Name="NOMTRANSPORTISTA" Mode="In" Type="String" />
+      <Parameter Name="EDADTRANSPORTISTA" Mode="In" Type="String" />
+      <Parameter Name="TELEFONOTRANSPORTISTA" Mode="In" Type="String" />
+      <Parameter Name="EMAILTRANSPORTISTA" Mode="In" Type="String" />
+      <Parameter Name="CONTRATRANSPORTISTA" Mode="In" Type="String" />
+      <Parameter Name="IDEMPRESA" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="AGREGAEMPRESA">
+      <Parameter Name="NOMBREEMPRESA" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AGREGATRANSPORTISTA">
+      <Parameter Name="NOMTRANSPORTISTA" Mode="In" Type="String" />
+      <Parameter Name="EDADTRANSPORTISTA" Mode="In" Type="String" />
+      <Parameter Name="TELEFONOTRANSPORTISTA" Mode="In" Type="String" />
+      <Parameter Name="EMAILTRANSPORTISTA" Mode="In" Type="String" />
+      <Parameter Name="CONTRATRANSPORTISTA" Mode="In" Type="String" />
+      <Parameter Name="IDEMPRESA" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="ELIMINAREMPRESA">
+      <Parameter Name="IDEMPRESA" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="ELIMINATRANSPORTISTA">
+      <Parameter Name="IDTRANSPORTISTA" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="EMPRESA" EntityType="Model.EMPRESA" />
+    <AssociationSet Name="SYS_C007197" Association="Model.SYS_C007197">
+      <End Role="EMPRESA" EntitySet="EMPRESA" />
+      <End Role="TRANSPORTISTA" EntitySet="TRANSPORTISTA" />
+    </AssociationSet>
+    <EntitySet Name="REGION" EntityType="Model.REGION" />
+    <AssociationSet Name="SYS_C007230" Association="Model.SYS_C007230">
+      <End Role="REGION" EntitySet="REGION" />
+      <End Role="CLIENTE_INTERNO" EntitySet="CLIENTE_INTERNO" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="CALIDAD">
     <Key>
@@ -236,4 +281,57 @@
     <Property Name="EMAIL_P" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="CONTRASEÑA_P" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="TRANSPORTISTA">
+    <Key>
+      <PropertyRef Name="ID_T" />
+    </Key>
+    <Property Name="ID_T" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="NOMBRE_T" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EDAD_T" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO_T" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL_T" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CONTRASEÑA_T" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ID_EMPRESA" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <NavigationProperty Name="EMPRESA" Relationship="Model.SYS_C007197" FromRole="TRANSPORTISTA" ToRole="EMPRESA" />
+  </EntityType>
+  <EntityType Name="EMPRESA">
+    <Key>
+      <PropertyRef Name="ID_EMPRESA" />
+    </Key>
+    <Property Name="ID_EMPRESA" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="NOMBRE_EMPRESA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TRANSPORTISTA" Relationship="Model.SYS_C007197" FromRole="EMPRESA" ToRole="TRANSPORTISTA" />
+  </EntityType>
+  <Association Name="SYS_C007197">
+    <End Type="Model.EMPRESA" Role="EMPRESA" Multiplicity="1" />
+    <End Type="Model.TRANSPORTISTA" Role="TRANSPORTISTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPRESA">
+        <PropertyRef Name="ID_EMPRESA" />
+      </Principal>
+      <Dependent Role="TRANSPORTISTA">
+        <PropertyRef Name="ID_EMPRESA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="REGION">
+    <Key>
+      <PropertyRef Name="ID_REGION" />
+    </Key>
+    <Property Name="ID_REGION" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="NOMBRE_REGION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CLIENTE_INTERNO" Relationship="Model.SYS_C007230" FromRole="REGION" ToRole="CLIENTE_INTERNO" />
+  </EntityType>
+  <Association Name="SYS_C007230">
+    <End Type="Model.REGION" Role="REGION" Multiplicity="1" />
+    <End Type="Model.CLIENTE_INTERNO" Role="CLIENTE_INTERNO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REGION">
+        <PropertyRef Name="ID_REGION" />
+      </Principal>
+      <Dependent Role="CLIENTE_INTERNO">
+        <PropertyRef Name="ID_REGION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

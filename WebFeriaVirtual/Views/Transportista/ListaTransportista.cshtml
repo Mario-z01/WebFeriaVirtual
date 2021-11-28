@@ -1,0 +1,40 @@
+﻿@using WebFeriaVirtual.Negocio;
+@{
+    ViewBag.Title = "ListaTransportista";
+}
+
+<h2>Lista usuarios Productor</h2>
+@{ List<Transportista> transportistas = (List<Transportista>)ViewBag.transportistas;}
+@Html.ActionLink("Crear Usuario Transportista", "CreateTransportista")
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Telefono</th>
+        <th>Correo</th>
+        <th>Contraseña</th>
+        <th>Empresa</th>
+        <th>Opciones</th>
+    </tr>
+    @foreach (var transportista in transportistas)
+    {
+        <tr>
+            <td>@transportista.Nombre</td>
+            <td>@transportista.Edad</td>
+            <td>@transportista.Telefono</td>
+            <td>@transportista.Correo</td>
+            <td>@transportista.Contraseña</td>
+            <td>@transportista.Empresa.Nombre</td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = transportista.Id })
+                @Html.ActionLink("Modificar", "Edit", new { id = transportista.Id })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@TempData["Mensaje"]
+
+

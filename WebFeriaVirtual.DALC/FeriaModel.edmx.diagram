@@ -16,6 +16,11 @@
         <AssociationConnector Association="Model.SYS_C007145" />
         <AssociationConnector Association="Model.SYS_C007144" />
         <EntityTypeShape EntityType="Model.PRODUCTOR" Width="1.5" PointX="5.5" PointY="1" />
+        <EntityTypeShape EntityType="Model.TRANSPORTISTA" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="Model.EMPRESA" Width="1.5" PointX="0.75" PointY="7.5" />
+        <AssociationConnector Association="Model.SYS_C007197" />
+        <EntityTypeShape EntityType="Model.REGION" Width="1.5" PointX="5.25" PointY="7.625" />
+        <AssociationConnector Association="Model.SYS_C007230" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

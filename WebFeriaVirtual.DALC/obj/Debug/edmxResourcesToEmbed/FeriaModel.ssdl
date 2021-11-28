@@ -32,11 +32,19 @@
       <PropertyRef Name="ID_CLIENTE1" />
     </Key>
     <Property Name="ID_CLIENTE1" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ID_REGION" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="NOMBRE_CLIENTE1" Type="varchar2" MaxLength="50" Nullable="false" />
     <Property Name="DIRECCION_CLIENTE1" Type="varchar2" MaxLength="100" Nullable="false" />
     <Property Name="TELEFONO_CLIENTE1" Type="varchar2" MaxLength="12" Nullable="false" />
     <Property Name="EMAIL_CLIENTE1" Type="varchar2" MaxLength="100" Nullable="false" />
     <Property Name="CONTRASEÑA_CLIENTE1" Type="varchar2" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EMPRESA">
+    <Key>
+      <PropertyRef Name="ID_EMPRESA" />
+    </Key>
+    <Property Name="ID_EMPRESA" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE_EMPRESA" Type="varchar2" MaxLength="50" />
   </EntityType>
   <EntityType Name="PRODUCTO">
     <Key>
@@ -60,6 +68,13 @@
     <Property Name="EMAIL_P" Type="varchar2" MaxLength="100" Nullable="false" />
     <Property Name="CONTRASEÑA_P" Type="varchar2" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="REGION">
+    <Key>
+      <PropertyRef Name="ID_REGION" />
+    </Key>
+    <Property Name="ID_REGION" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE_REGION" Type="varchar2" MaxLength="50" />
+  </EntityType>
   <EntityType Name="SOLICITUD">
     <Key>
       <PropertyRef Name="ID_SOLICITUD" />
@@ -75,6 +90,18 @@
     </Key>
     <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="NOMBRE_PRODUCTO" Type="varchar2" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TRANSPORTISTA">
+    <Key>
+      <PropertyRef Name="ID_T" />
+    </Key>
+    <Property Name="ID_T" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE_T" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="EDAD_T" Type="varchar2" MaxLength="2" Nullable="false" />
+    <Property Name="TELEFONO_T" Type="varchar2" MaxLength="9" Nullable="false" />
+    <Property Name="EMAIL_T" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="CONTRASEÑA_T" Type="varchar2" MaxLength="20" Nullable="false" />
+    <Property Name="ID_EMPRESA" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
   <Association Name="SYS_C007096">
     <End Role="TIPO" Type="Self.TIPO" Multiplicity="1" />
@@ -112,6 +139,34 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="SYS_C007197">
+    <End Role="EMPRESA" Type="Self.EMPRESA" Multiplicity="1" />
+    <End Role="TRANSPORTISTA" Type="Self.TRANSPORTISTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPRESA">
+        <PropertyRef Name="ID_EMPRESA" />
+      </Principal>
+      <Dependent Role="TRANSPORTISTA">
+        <PropertyRef Name="ID_EMPRESA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007230">
+    <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
+    <End Role="CLIENTE_INTERNO" Type="Self.CLIENTE_INTERNO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REGION">
+        <PropertyRef Name="ID_REGION" />
+      </Principal>
+      <Dependent Role="CLIENTE_INTERNO">
+        <PropertyRef Name="ID_REGION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="ACTUALIZAEMPRESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="IDEMPRESA" Type="number" Mode="In" />
+    <Parameter Name="NOMBREEMPRESA" Type="varchar2" Mode="In" />
+  </Function>
   <Function Name="ACTUALIZAEXTERNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDCLIENTE2" Type="number" Mode="In" />
     <Parameter Name="NOMCLIENTE2" Type="varchar2" Mode="In" />
@@ -122,6 +177,7 @@
   </Function>
   <Function Name="ACTUALIZAINTERNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDCLIENTE1" Type="number" Mode="In" />
+    <Parameter Name="IDREGION" Type="number" Mode="In" />
     <Parameter Name="NOMCLIENTE1" Type="varchar2" Mode="In" />
     <Parameter Name="DIRECLIENTE1" Type="varchar2" Mode="In" />
     <Parameter Name="FONOCLIENTE1" Type="varchar2" Mode="In" />
@@ -154,6 +210,18 @@
     <Parameter Name="IDTIPO" Type="number" Mode="In" />
     <Parameter Name="NOMBRETIPO" Type="varchar2" Mode="In" />
   </Function>
+  <Function Name="ACTUALIZATRANSPORTISTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="IDTRANSPORTISTA" Type="number" Mode="In" />
+    <Parameter Name="NOMTRANSPORTISTA" Type="varchar2" Mode="In" />
+    <Parameter Name="EDADTRANSPORTISTA" Type="varchar2" Mode="In" />
+    <Parameter Name="TELEFONOTRANSPORTISTA" Type="varchar2" Mode="In" />
+    <Parameter Name="EMAILTRANSPORTISTA" Type="varchar2" Mode="In" />
+    <Parameter Name="CONTRATRANSPORTISTA" Type="varchar2" Mode="In" />
+    <Parameter Name="IDEMPRESA" Type="number" Mode="In" />
+  </Function>
+  <Function Name="AGREGAEMPRESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="NOMBREEMPRESA" Type="varchar2" Mode="In" />
+  </Function>
   <Function Name="AGREGAPRODUCTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="TIPOID" Type="number" Mode="In" />
     <Parameter Name="STOCKPRODUCTO" Type="number" Mode="In" />
@@ -176,6 +244,7 @@
     <Parameter Name="CONTRACLIENTE2" Type="varchar2" Mode="In" />
   </Function>
   <Function Name="AGREGARCLIENTEINT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="IDREGION" Type="number" Mode="In" />
     <Parameter Name="NOMCLIENTE1" Type="varchar2" Mode="In" />
     <Parameter Name="DIRECLIENTE1" Type="varchar2" Mode="In" />
     <Parameter Name="FONOCLIENTE1" Type="varchar2" Mode="In" />
@@ -190,6 +259,14 @@
   <Function Name="AGREGATIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="NOMBRETIPO" Type="varchar2" Mode="In" />
   </Function>
+  <Function Name="AGREGATRANSPORTISTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="NOMTRANSPORTISTA" Type="varchar2" Mode="In" />
+    <Parameter Name="EDADTRANSPORTISTA" Type="varchar2" Mode="In" />
+    <Parameter Name="TELEFONOTRANSPORTISTA" Type="varchar2" Mode="In" />
+    <Parameter Name="EMAILTRANSPORTISTA" Type="varchar2" Mode="In" />
+    <Parameter Name="CONTRATRANSPORTISTA" Type="varchar2" Mode="In" />
+    <Parameter Name="IDEMPRESA" Type="number" Mode="In" />
+  </Function>
   <Function Name="ELIMINAEXTERNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDCLIENTE2" Type="number" Mode="In" />
   </Function>
@@ -202,21 +279,30 @@
   <Function Name="ELIMINAPRODUCTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDPRODUCTOR" Type="number" Mode="In" />
   </Function>
+  <Function Name="ELIMINAREMPRESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="IDEMPRESA" Type="number" Mode="In" />
+  </Function>
   <Function Name="ELIMINARTIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDTIPO" Type="number" Mode="In" />
   </Function>
   <Function Name="ELIMINASOLICITUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDSOLICITUD" Type="number" Mode="In" />
   </Function>
+  <Function Name="ELIMINATRANSPORTISTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="IDTRANSPORTISTA" Type="number" Mode="In" />
+  </Function>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="CALIDAD" EntityType="Self.CALIDAD" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="CLIENTE_EXTERNO" EntityType="Self.CLIENTE_EXTERNO" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="CLIENTE_INTERNO" EntityType="Self.CLIENTE_INTERNO" Schema="USUARIOFERIA1" store:Type="Tables" />
+    <EntitySet Name="EMPRESA" EntityType="Self.EMPRESA" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="PRODUCTOR" EntityType="Self.PRODUCTOR" Schema="USUARIOFERIA1" store:Type="Tables" />
+    <EntitySet Name="REGION" EntityType="Self.REGION" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="SOLICITUD" EntityType="Self.SOLICITUD" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="TIPO" EntityType="Self.TIPO" Schema="USUARIOFERIA1" store:Type="Tables" />
+    <EntitySet Name="TRANSPORTISTA" EntityType="Self.TRANSPORTISTA" Schema="USUARIOFERIA1" store:Type="Tables" />
     <AssociationSet Name="SYS_C007096" Association="Self.SYS_C007096">
       <End Role="TIPO" EntitySet="TIPO" />
       <End Role="PRODUCTO" EntitySet="PRODUCTO" />
@@ -228,6 +314,14 @@
     <AssociationSet Name="SYS_C007145" Association="Self.SYS_C007145">
       <End Role="CALIDAD" EntitySet="CALIDAD" />
       <End Role="SOLICITUD" EntitySet="SOLICITUD" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007197" Association="Self.SYS_C007197">
+      <End Role="EMPRESA" EntitySet="EMPRESA" />
+      <End Role="TRANSPORTISTA" EntitySet="TRANSPORTISTA" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007230" Association="Self.SYS_C007230">
+      <End Role="REGION" EntitySet="REGION" />
+      <End Role="CLIENTE_INTERNO" EntitySet="CLIENTE_INTERNO" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -26,6 +26,7 @@
     <EntitySetMapping Name="CLIENTE_INTERNO">
       <EntityTypeMapping TypeName="Model.CLIENTE_INTERNO">
         <MappingFragment StoreEntitySet="CLIENTE_INTERNO">
+          <ScalarProperty Name="ID_REGION" ColumnName="ID_REGION" />
           <ScalarProperty Name="ID_CLIENTE1" ColumnName="ID_CLIENTE1" />
           <ScalarProperty Name="NOMBRE_CLIENTE1" ColumnName="NOMBRE_CLIENTE1" />
           <ScalarProperty Name="DIRECCION_CLIENTE1" ColumnName="DIRECCION_CLIENTE1" />
@@ -103,5 +104,40 @@
     <FunctionImportMapping FunctionImportName="ELIMINAINTERNO" FunctionName="Model.Store.ELIMINAINTERNO" />
     <FunctionImportMapping FunctionImportName="ACTUALIZAPRODUCTOR" FunctionName="Model.Store.ACTUALIZAPRODUCTOR" />
     <FunctionImportMapping FunctionImportName="ELIMINAPRODUCTOR" FunctionName="Model.Store.ELIMINAPRODUCTOR" />
+    <EntitySetMapping Name="TRANSPORTISTA">
+      <EntityTypeMapping TypeName="Model.TRANSPORTISTA">
+        <MappingFragment StoreEntitySet="TRANSPORTISTA">
+          <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+          <ScalarProperty Name="CONTRASEÑA_T" ColumnName="CONTRASEÑA_T" />
+          <ScalarProperty Name="EMAIL_T" ColumnName="EMAIL_T" />
+          <ScalarProperty Name="TELEFONO_T" ColumnName="TELEFONO_T" />
+          <ScalarProperty Name="EDAD_T" ColumnName="EDAD_T" />
+          <ScalarProperty Name="NOMBRE_T" ColumnName="NOMBRE_T" />
+          <ScalarProperty Name="ID_T" ColumnName="ID_T" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ACTUALIZAEMPRESA" FunctionName="Model.Store.ACTUALIZAEMPRESA" />
+    <FunctionImportMapping FunctionImportName="ACTUALIZATRANSPORTISTA" FunctionName="Model.Store.ACTUALIZATRANSPORTISTA" />
+    <FunctionImportMapping FunctionImportName="AGREGAEMPRESA" FunctionName="Model.Store.AGREGAEMPRESA" />
+    <FunctionImportMapping FunctionImportName="AGREGATRANSPORTISTA" FunctionName="Model.Store.AGREGATRANSPORTISTA" />
+    <FunctionImportMapping FunctionImportName="ELIMINAREMPRESA" FunctionName="Model.Store.ELIMINAREMPRESA" />
+    <FunctionImportMapping FunctionImportName="ELIMINATRANSPORTISTA" FunctionName="Model.Store.ELIMINATRANSPORTISTA" />
+    <EntitySetMapping Name="EMPRESA">
+      <EntityTypeMapping TypeName="Model.EMPRESA">
+        <MappingFragment StoreEntitySet="EMPRESA">
+          <ScalarProperty Name="NOMBRE_EMPRESA" ColumnName="NOMBRE_EMPRESA" />
+          <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGION">
+      <EntityTypeMapping TypeName="Model.REGION">
+        <MappingFragment StoreEntitySet="REGION">
+          <ScalarProperty Name="NOMBRE_REGION" ColumnName="NOMBRE_REGION" />
+          <ScalarProperty Name="ID_REGION" ColumnName="ID_REGION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

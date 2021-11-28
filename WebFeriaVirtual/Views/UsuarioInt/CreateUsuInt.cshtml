@@ -7,6 +7,10 @@
 @Html.ActionLink("Lista de usuarios internos", "ListaUsuInt")
 @using (Html.BeginForm())
 {
+    @Html.LabelFor(u => u.IdRegion, "Region")
+    <br />
+    @Html.DropDownListFor(u => u.IdRegion, new SelectList(ViewBag.regiones, "Id", "Nombre"))
+    <br />
     @Html.LabelFor(u => u.Nombre)
     <br />
     @Html.TextBoxFor(u => u.Nombre)

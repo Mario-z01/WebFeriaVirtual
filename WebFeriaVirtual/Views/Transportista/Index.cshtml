@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Bienvenido usuario @User.Identity.Name</h2>
+<br />
+<p>Seleccione la opcion que desea realizar:</p>
+<br />
+@Html.ActionLink("Subasta Interna", "ListaUsuarios", "Home")
+<br />
+@Html.ActionLink("Subasta Externa", "ListaUsuarios", "Home")
+
+

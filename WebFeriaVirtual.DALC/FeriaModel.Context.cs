@@ -36,6 +36,9 @@ namespace WebFeriaVirtual.DALC
         public DbSet<CALIDAD> CALIDAD { get; set; }
         public DbSet<SOLICITUD> SOLICITUD { get; set; }
         public DbSet<PRODUCTOR> PRODUCTOR { get; set; }
+        public DbSet<TRANSPORTISTA> TRANSPORTISTA { get; set; }
+        public DbSet<EMPRESA> EMPRESA { get; set; }
+        public DbSet<REGION> REGION { get; set; }
     
         public virtual int AGREGAPRODUCTO(Nullable<decimal> tIPOID, Nullable<decimal> sTOCKPRODUCTO, Nullable<decimal> pRECIOPRODUCTO, string iMAGENPRODUCTO)
         {
@@ -112,8 +115,12 @@ namespace WebFeriaVirtual.DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AGREGARCLIENTEEXT", nOMCLIENTE2Parameter, dIRECLIENTE2Parameter, fONOCLIENTE2Parameter, cORREOCLIENTE2Parameter, cONTRACLIENTE2Parameter);
         }
     
-        public virtual int AGREGARCLIENTEINT(string nOMCLIENTE1, string dIRECLIENTE1, string fONOCLIENTE1, string cORREOCLIENTE1, string cONTRACLIENTE1)
+        public virtual int AGREGARCLIENTEINT(Nullable<decimal> iDREGION, string nOMCLIENTE1, string dIRECLIENTE1, string fONOCLIENTE1, string cORREOCLIENTE1, string cONTRACLIENTE1)
         {
+            var iDREGIONParameter = iDREGION.HasValue ?
+                new ObjectParameter("IDREGION", iDREGION) :
+                new ObjectParameter("IDREGION", typeof(decimal));
+    
             var nOMCLIENTE1Parameter = nOMCLIENTE1 != null ?
                 new ObjectParameter("NOMCLIENTE1", nOMCLIENTE1) :
                 new ObjectParameter("NOMCLIENTE1", typeof(string));
@@ -134,7 +141,7 @@ namespace WebFeriaVirtual.DALC
                 new ObjectParameter("CONTRACLIENTE1", cONTRACLIENTE1) :
                 new ObjectParameter("CONTRACLIENTE1", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AGREGARCLIENTEINT", nOMCLIENTE1Parameter, dIRECLIENTE1Parameter, fONOCLIENTE1Parameter, cORREOCLIENTE1Parameter, cONTRACLIENTE1Parameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AGREGARCLIENTEINT", iDREGIONParameter, nOMCLIENTE1Parameter, dIRECLIENTE1Parameter, fONOCLIENTE1Parameter, cORREOCLIENTE1Parameter, cONTRACLIENTE1Parameter);
         }
     
         public virtual int ACTUALIZAPRODUCTO(Nullable<decimal> iDPRODUCTO, Nullable<decimal> tIPOID, Nullable<decimal> sTOCKPRODUCTO, Nullable<decimal> pRECIOPRODUCTO, string iMAGENPRODUCTO)
@@ -278,11 +285,15 @@ namespace WebFeriaVirtual.DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZAEXTERNO", iDCLIENTE2Parameter, nOMCLIENTE2Parameter, dIRECLIENTE2Parameter, fONOCLIENTE2Parameter, cORREOCLIENTE2Parameter, cONTRACLIENTE2Parameter);
         }
     
-        public virtual int ACTUALIZAINTERNO(Nullable<decimal> iDCLIENTE1, string nOMCLIENTE1, string dIRECLIENTE1, string fONOCLIENTE1, string cORREOCLIENTE1, string cONTRACLIENTE1)
+        public virtual int ACTUALIZAINTERNO(Nullable<decimal> iDCLIENTE1, Nullable<decimal> iDREGION, string nOMCLIENTE1, string dIRECLIENTE1, string fONOCLIENTE1, string cORREOCLIENTE1, string cONTRACLIENTE1)
         {
             var iDCLIENTE1Parameter = iDCLIENTE1.HasValue ?
                 new ObjectParameter("IDCLIENTE1", iDCLIENTE1) :
                 new ObjectParameter("IDCLIENTE1", typeof(decimal));
+    
+            var iDREGIONParameter = iDREGION.HasValue ?
+                new ObjectParameter("IDREGION", iDREGION) :
+                new ObjectParameter("IDREGION", typeof(decimal));
     
             var nOMCLIENTE1Parameter = nOMCLIENTE1 != null ?
                 new ObjectParameter("NOMCLIENTE1", nOMCLIENTE1) :
@@ -304,7 +315,7 @@ namespace WebFeriaVirtual.DALC
                 new ObjectParameter("CONTRACLIENTE1", cONTRACLIENTE1) :
                 new ObjectParameter("CONTRACLIENTE1", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZAINTERNO", iDCLIENTE1Parameter, nOMCLIENTE1Parameter, dIRECLIENTE1Parameter, fONOCLIENTE1Parameter, cORREOCLIENTE1Parameter, cONTRACLIENTE1Parameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZAINTERNO", iDCLIENTE1Parameter, iDREGIONParameter, nOMCLIENTE1Parameter, dIRECLIENTE1Parameter, fONOCLIENTE1Parameter, cORREOCLIENTE1Parameter, cONTRACLIENTE1Parameter);
         }
     
         public virtual int ELIMINAEXTERNO(Nullable<decimal> iDCLIENTE2)
@@ -365,6 +376,108 @@ namespace WebFeriaVirtual.DALC
                 new ObjectParameter("IDPRODUCTOR", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINAPRODUCTOR", iDPRODUCTORParameter);
+        }
+    
+        public virtual int ACTUALIZAEMPRESA(Nullable<decimal> iDEMPRESA, string nOMBREEMPRESA)
+        {
+            var iDEMPRESAParameter = iDEMPRESA.HasValue ?
+                new ObjectParameter("IDEMPRESA", iDEMPRESA) :
+                new ObjectParameter("IDEMPRESA", typeof(decimal));
+    
+            var nOMBREEMPRESAParameter = nOMBREEMPRESA != null ?
+                new ObjectParameter("NOMBREEMPRESA", nOMBREEMPRESA) :
+                new ObjectParameter("NOMBREEMPRESA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZAEMPRESA", iDEMPRESAParameter, nOMBREEMPRESAParameter);
+        }
+    
+        public virtual int ACTUALIZATRANSPORTISTA(Nullable<decimal> iDTRANSPORTISTA, string nOMTRANSPORTISTA, string eDADTRANSPORTISTA, string tELEFONOTRANSPORTISTA, string eMAILTRANSPORTISTA, string cONTRATRANSPORTISTA, Nullable<decimal> iDEMPRESA)
+        {
+            var iDTRANSPORTISTAParameter = iDTRANSPORTISTA.HasValue ?
+                new ObjectParameter("IDTRANSPORTISTA", iDTRANSPORTISTA) :
+                new ObjectParameter("IDTRANSPORTISTA", typeof(decimal));
+    
+            var nOMTRANSPORTISTAParameter = nOMTRANSPORTISTA != null ?
+                new ObjectParameter("NOMTRANSPORTISTA", nOMTRANSPORTISTA) :
+                new ObjectParameter("NOMTRANSPORTISTA", typeof(string));
+    
+            var eDADTRANSPORTISTAParameter = eDADTRANSPORTISTA != null ?
+                new ObjectParameter("EDADTRANSPORTISTA", eDADTRANSPORTISTA) :
+                new ObjectParameter("EDADTRANSPORTISTA", typeof(string));
+    
+            var tELEFONOTRANSPORTISTAParameter = tELEFONOTRANSPORTISTA != null ?
+                new ObjectParameter("TELEFONOTRANSPORTISTA", tELEFONOTRANSPORTISTA) :
+                new ObjectParameter("TELEFONOTRANSPORTISTA", typeof(string));
+    
+            var eMAILTRANSPORTISTAParameter = eMAILTRANSPORTISTA != null ?
+                new ObjectParameter("EMAILTRANSPORTISTA", eMAILTRANSPORTISTA) :
+                new ObjectParameter("EMAILTRANSPORTISTA", typeof(string));
+    
+            var cONTRATRANSPORTISTAParameter = cONTRATRANSPORTISTA != null ?
+                new ObjectParameter("CONTRATRANSPORTISTA", cONTRATRANSPORTISTA) :
+                new ObjectParameter("CONTRATRANSPORTISTA", typeof(string));
+    
+            var iDEMPRESAParameter = iDEMPRESA.HasValue ?
+                new ObjectParameter("IDEMPRESA", iDEMPRESA) :
+                new ObjectParameter("IDEMPRESA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZATRANSPORTISTA", iDTRANSPORTISTAParameter, nOMTRANSPORTISTAParameter, eDADTRANSPORTISTAParameter, tELEFONOTRANSPORTISTAParameter, eMAILTRANSPORTISTAParameter, cONTRATRANSPORTISTAParameter, iDEMPRESAParameter);
+        }
+    
+        public virtual int AGREGAEMPRESA(string nOMBREEMPRESA)
+        {
+            var nOMBREEMPRESAParameter = nOMBREEMPRESA != null ?
+                new ObjectParameter("NOMBREEMPRESA", nOMBREEMPRESA) :
+                new ObjectParameter("NOMBREEMPRESA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AGREGAEMPRESA", nOMBREEMPRESAParameter);
+        }
+    
+        public virtual int AGREGATRANSPORTISTA(string nOMTRANSPORTISTA, string eDADTRANSPORTISTA, string tELEFONOTRANSPORTISTA, string eMAILTRANSPORTISTA, string cONTRATRANSPORTISTA, Nullable<decimal> iDEMPRESA)
+        {
+            var nOMTRANSPORTISTAParameter = nOMTRANSPORTISTA != null ?
+                new ObjectParameter("NOMTRANSPORTISTA", nOMTRANSPORTISTA) :
+                new ObjectParameter("NOMTRANSPORTISTA", typeof(string));
+    
+            var eDADTRANSPORTISTAParameter = eDADTRANSPORTISTA != null ?
+                new ObjectParameter("EDADTRANSPORTISTA", eDADTRANSPORTISTA) :
+                new ObjectParameter("EDADTRANSPORTISTA", typeof(string));
+    
+            var tELEFONOTRANSPORTISTAParameter = tELEFONOTRANSPORTISTA != null ?
+                new ObjectParameter("TELEFONOTRANSPORTISTA", tELEFONOTRANSPORTISTA) :
+                new ObjectParameter("TELEFONOTRANSPORTISTA", typeof(string));
+    
+            var eMAILTRANSPORTISTAParameter = eMAILTRANSPORTISTA != null ?
+                new ObjectParameter("EMAILTRANSPORTISTA", eMAILTRANSPORTISTA) :
+                new ObjectParameter("EMAILTRANSPORTISTA", typeof(string));
+    
+            var cONTRATRANSPORTISTAParameter = cONTRATRANSPORTISTA != null ?
+                new ObjectParameter("CONTRATRANSPORTISTA", cONTRATRANSPORTISTA) :
+                new ObjectParameter("CONTRATRANSPORTISTA", typeof(string));
+    
+            var iDEMPRESAParameter = iDEMPRESA.HasValue ?
+                new ObjectParameter("IDEMPRESA", iDEMPRESA) :
+                new ObjectParameter("IDEMPRESA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AGREGATRANSPORTISTA", nOMTRANSPORTISTAParameter, eDADTRANSPORTISTAParameter, tELEFONOTRANSPORTISTAParameter, eMAILTRANSPORTISTAParameter, cONTRATRANSPORTISTAParameter, iDEMPRESAParameter);
+        }
+    
+        public virtual int ELIMINAREMPRESA(Nullable<decimal> iDEMPRESA)
+        {
+            var iDEMPRESAParameter = iDEMPRESA.HasValue ?
+                new ObjectParameter("IDEMPRESA", iDEMPRESA) :
+                new ObjectParameter("IDEMPRESA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINAREMPRESA", iDEMPRESAParameter);
+        }
+    
+        public virtual int ELIMINATRANSPORTISTA(Nullable<decimal> iDTRANSPORTISTA)
+        {
+            var iDTRANSPORTISTAParameter = iDTRANSPORTISTA.HasValue ?
+                new ObjectParameter("IDTRANSPORTISTA", iDTRANSPORTISTA) :
+                new ObjectParameter("IDTRANSPORTISTA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINATRANSPORTISTA", iDTRANSPORTISTAParameter);
         }
     }
 }

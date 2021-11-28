@@ -1,0 +1,38 @@
+﻿@model WebFeriaVirtual.Negocio.Transportista
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Modificar datos Usuario Transportista</h2>
+@Html.ActionLink("Lista de usuarios transportistas", "ListaTransportista")
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(t => t.Id)
+    <br />
+    @Html.LabelFor(t => t.Nombre)
+    <br />
+    @Html.TextBoxFor(t => t.Nombre)
+    <br />
+    @Html.LabelFor(t => t.Edad)
+    <br />
+    @Html.TextBoxFor(t => t.Edad)
+    <br />
+    @Html.LabelFor(t => t.Telefono)
+    <br />
+    @Html.TextBoxFor(t => t.Telefono)
+    <br />
+    @Html.LabelFor(t => t.Correo)
+    <br />
+    @Html.TextBoxFor(t => t.Correo)
+    <br />
+    @Html.LabelFor(t => t.Contraseña)
+    <br />
+    @Html.TextBoxFor(t => t.Contraseña)
+    <br />
+    @Html.LabelFor(t => t.IdEmpresa, "Empresa")
+    <br />
+    @Html.DropDownListFor(t => t.IdEmpresa, new SelectList(ViewBag.empresas, "Id", "Nombre"))
+    <br />
+    <br />
+    <button>Guardar datos modificados</button>
+}
