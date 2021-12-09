@@ -3,19 +3,22 @@
     ViewBag.Title = "LoginProduct";
 }
 
-<h2>Ingresa tus credenciales de Usuario Productor</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.LabelFor(p => p.Correo, "Correo")
-    @Html.TextBoxFor(p => p.Correo, new { type = "Correo" })
-    <br />
-    @Html.LabelFor(p => p.Contraseña, "Contraseña")
-    @Html.PasswordFor(p => p.Contraseña)
-    <br />
-    <button>Ingresar</button>
-}
-
+<h1>Ingresa tus credenciales de <span> Usuario Productor </span></h1>
+<h2>
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(p => p.Correo, "Correo")
+        <br />
+        @Html.TextBoxFor(p => p.Correo, new { type = "Correo" })
+        <br />
+        @Html.LabelFor(p => p.Contraseña, "Contraseña")
+        <br />
+        @Html.PasswordFor(p => p.Contraseña)
+        <br />
+        <br />
+        <button>Ingresar</button>
+    }
+</h2>
 <br />
 
 @TempData["Mensaje"]

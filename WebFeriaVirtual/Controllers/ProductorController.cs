@@ -15,6 +15,7 @@ namespace WebFeriaVirtual.Controllers
         {
             return View();
         }
+
         public ActionResult ListaProduct()
         {
             ViewBag.productors = new Productor().ReadAll();
@@ -34,8 +35,16 @@ namespace WebFeriaVirtual.Controllers
             {
                 // TODO: Add insert logic here
                 productor.Save();
-                TempData["mensaje"] = "Usuario Productor guardado correctamente";
-                return RedirectToAction("ListaProduct", "Productor");
+                if (productor.Nombre != null & productor.Edad != null & productor.Telefono != null & productor.Direccion != null & productor.Correo != null & productor.Contraseña != null)
+                {
+                    TempData["mensaje"] = "Usuario Productor guardado correctamente";
+                    return RedirectToAction("ListaProduct", "Productor");
+                }
+                else
+                {
+                    TempData["mensaje"] = "Favor ingresar datos correctos en el registro";
+                    return RedirectToAction("ListaProduct", "Productor");
+                }
             }
             catch
             {

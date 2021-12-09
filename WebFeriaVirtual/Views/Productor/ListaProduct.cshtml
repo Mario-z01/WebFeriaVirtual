@@ -6,7 +6,7 @@
 <h2>Lista usuarios Productor</h2>
 @{ List<Productor> productors = (List<Productor>)ViewBag.productors;}
 @Html.ActionLink("Crear Usuario Productor", "CreateProduct")
-<table border="1">
+<table cellspacing="10" cellpadding="10" border="1">
     <tr>
         <th>Nombre</th>
         <th>Edad</th>
@@ -35,5 +35,7 @@
 
 </table>
 
+@Html.ActionLink("Volver", "ListaUsuarios", "Home")
+<br />
 @TempData["Mensaje"]
 

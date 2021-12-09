@@ -3,10 +3,51 @@
     ViewBag.Title = "IndexExt";
 }
 
-<h2>Bienvenido usuario @User.Identity.Name</h2>
-<p>Seleccione una opción:</p>
-<br />
-@Html.ActionLink("Ingresar solicitud de compra", "Create", "Solicitud")
-<br />
-@Html.ActionLink("Listado de solicitudes de compra", "Index", "Solicitud")
+<h1>Bienvenido <span>Cliente</span></h1>
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container">
 
+        <div class="row gy-4">
+
+            <div class="col-lg-8">
+                <div class="portfolio-details-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+
+                        <div class="swiper-slide">
+                            <img src="~/Content/img/portfolio/portfolio-details-1.jpg" alt="">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="~/Content/img/portfolio/portfolio-details-2.jpg" alt="">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="~/Content/img/portfolio/portfolio-details-3.jpg" alt="">
+                        </div>
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="portfolio-description">
+                    <h2>Estimado cliente</h2>
+                    <p>
+                        A continuacion seleccione la opcion deseada, si desea ingresar una solicitud de compra o para visualizar el listado de solicitudes de compra
+                    </p>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Seleccione una opción:</h3>
+                    <ul>
+                        <li><form action="" method="post"><input type="button" value="Ingresar solicitud de compra" onclick="location.href='@Url.Action("Create", "Solicitud")'"></form></li>
+                        <li><form action="" method="post"><input type="button" value="Listado de solicitudes de compra" onclick="location.href='@Url.Action("Index", "Solicitud")'"></form></li>
+                    </ul>
+                </div>
+                
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Portfolio Details Section -->

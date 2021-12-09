@@ -3,12 +3,51 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Bienvenido usuario @User.Identity.Name</h2>
-<br />
-<p>Seleccione la opcion que desea realizar:</p>
-<br />
-@Html.ActionLink("Subasta Interna", "ListaUsuarios", "Home")
-<br />
-@Html.ActionLink("Subasta Externa", "ListaUsuarios", "Home")
+<h1>Bienvenido <span>Usuario transportista</span></h1>
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container">
 
+        <div class="row gy-4">
 
+            <div class="col-lg-8">
+                <div class="portfolio-details-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+
+                        <div class="swiper-slide">
+                            <img src="~/Content/img/team/transpor-1.jpg" alt="">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="~/Content/img/team/transpor-2.jpg" alt="">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="~/Content/img/team/transpor-3.jpg" alt="">
+                        </div>
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="portfolio-description">
+                    <h2>Estimado Usuario</h2>
+                    <p>
+                        A continuacion seleccione la opcion deseada, si desea realizar una subasta o desea visualizar el estado de las subastas
+                    </p>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Seleccione una opción:</h3>
+                    <ul>
+                        <li><form action="" method="post"><input type="button" value="Realizar subasta" onclick="location.href='@Url.Action("Subasta", "Transportista")'"></form></li>
+                        <li><form action="" method="post"><input type="button" value="Estado Subasta" onclick="location.href='@Url.Action("EstadoSubasta", "Transportista")'"></form></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Portfolio Details Section -->

@@ -1,0 +1,16 @@
+﻿@model WebFeriaVirtual.Negocio.VentaExterna
+@{
+    ViewBag.Title = "EditSubasta";
+}
+
+<h1>Modificar Valor <span>Subasta</span></h1>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(v => v.Id)
+    @Html.LabelFor(v => v.Precio)
+    <br />
+    @Html.TextBoxFor(v => v.Precio)
+    <br />
+    <br />
+    <button>Guardar datos modificados</button>
+}

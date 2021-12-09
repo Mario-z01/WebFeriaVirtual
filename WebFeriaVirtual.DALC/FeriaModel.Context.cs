@@ -39,6 +39,8 @@ namespace WebFeriaVirtual.DALC
         public DbSet<TRANSPORTISTA> TRANSPORTISTA { get; set; }
         public DbSet<EMPRESA> EMPRESA { get; set; }
         public DbSet<REGION> REGION { get; set; }
+        public DbSet<VENTA_EXT> VENTA_EXT { get; set; }
+        public DbSet<OPCION> OPCION { get; set; }
     
         public virtual int AGREGAPRODUCTO(Nullable<decimal> tIPOID, Nullable<decimal> sTOCKPRODUCTO, Nullable<decimal> pRECIOPRODUCTO, string iMAGENPRODUCTO)
         {
@@ -90,11 +92,15 @@ namespace WebFeriaVirtual.DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AGREGAPRODUCTOR", nOMPRODUCTORParameter, eDADPRODUCTORParameter, tELEFONOPRODUCTORParameter, dIREPRODUCTORParameter, eMAILPRODUCTORParameter, cONTRAPRODUCTORParameter);
         }
     
-        public virtual int AGREGARCLIENTEEXT(string nOMCLIENTE2, string dIRECLIENTE2, string fONOCLIENTE2, string cORREOCLIENTE2, string cONTRACLIENTE2)
+        public virtual int AGREGARCLIENTEEXT(string nOMCLIENTE2, string pAIS, string dIRECLIENTE2, string fONOCLIENTE2, string cORREOCLIENTE2, string cONTRACLIENTE2)
         {
             var nOMCLIENTE2Parameter = nOMCLIENTE2 != null ?
                 new ObjectParameter("NOMCLIENTE2", nOMCLIENTE2) :
                 new ObjectParameter("NOMCLIENTE2", typeof(string));
+    
+            var pAISParameter = pAIS != null ?
+                new ObjectParameter("PAIS", pAIS) :
+                new ObjectParameter("PAIS", typeof(string));
     
             var dIRECLIENTE2Parameter = dIRECLIENTE2 != null ?
                 new ObjectParameter("DIRECLIENTE2", dIRECLIENTE2) :
@@ -112,7 +118,7 @@ namespace WebFeriaVirtual.DALC
                 new ObjectParameter("CONTRACLIENTE2", cONTRACLIENTE2) :
                 new ObjectParameter("CONTRACLIENTE2", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AGREGARCLIENTEEXT", nOMCLIENTE2Parameter, dIRECLIENTE2Parameter, fONOCLIENTE2Parameter, cORREOCLIENTE2Parameter, cONTRACLIENTE2Parameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AGREGARCLIENTEEXT", nOMCLIENTE2Parameter, pAISParameter, dIRECLIENTE2Parameter, fONOCLIENTE2Parameter, cORREOCLIENTE2Parameter, cONTRACLIENTE2Parameter);
         }
     
         public virtual int AGREGARCLIENTEINT(Nullable<decimal> iDREGION, string nOMCLIENTE1, string dIRECLIENTE1, string fONOCLIENTE1, string cORREOCLIENTE1, string cONTRACLIENTE1)
@@ -256,7 +262,7 @@ namespace WebFeriaVirtual.DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINASOLICITUD", iDSOLICITUDParameter);
         }
     
-        public virtual int ACTUALIZAEXTERNO(Nullable<decimal> iDCLIENTE2, string nOMCLIENTE2, string dIRECLIENTE2, string fONOCLIENTE2, string cORREOCLIENTE2, string cONTRACLIENTE2)
+        public virtual int ACTUALIZAEXTERNO(Nullable<decimal> iDCLIENTE2, string nOMCLIENTE2, string pAIS, string dIRECLIENTE2, string fONOCLIENTE2, string cORREOCLIENTE2, string cONTRACLIENTE2)
         {
             var iDCLIENTE2Parameter = iDCLIENTE2.HasValue ?
                 new ObjectParameter("IDCLIENTE2", iDCLIENTE2) :
@@ -265,6 +271,10 @@ namespace WebFeriaVirtual.DALC
             var nOMCLIENTE2Parameter = nOMCLIENTE2 != null ?
                 new ObjectParameter("NOMCLIENTE2", nOMCLIENTE2) :
                 new ObjectParameter("NOMCLIENTE2", typeof(string));
+    
+            var pAISParameter = pAIS != null ?
+                new ObjectParameter("PAIS", pAIS) :
+                new ObjectParameter("PAIS", typeof(string));
     
             var dIRECLIENTE2Parameter = dIRECLIENTE2 != null ?
                 new ObjectParameter("DIRECLIENTE2", dIRECLIENTE2) :
@@ -282,7 +292,7 @@ namespace WebFeriaVirtual.DALC
                 new ObjectParameter("CONTRACLIENTE2", cONTRACLIENTE2) :
                 new ObjectParameter("CONTRACLIENTE2", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZAEXTERNO", iDCLIENTE2Parameter, nOMCLIENTE2Parameter, dIRECLIENTE2Parameter, fONOCLIENTE2Parameter, cORREOCLIENTE2Parameter, cONTRACLIENTE2Parameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZAEXTERNO", iDCLIENTE2Parameter, nOMCLIENTE2Parameter, pAISParameter, dIRECLIENTE2Parameter, fONOCLIENTE2Parameter, cORREOCLIENTE2Parameter, cONTRACLIENTE2Parameter);
         }
     
         public virtual int ACTUALIZAINTERNO(Nullable<decimal> iDCLIENTE1, Nullable<decimal> iDREGION, string nOMCLIENTE1, string dIRECLIENTE1, string fONOCLIENTE1, string cORREOCLIENTE1, string cONTRACLIENTE1)
@@ -478,6 +488,125 @@ namespace WebFeriaVirtual.DALC
                 new ObjectParameter("IDTRANSPORTISTA", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINATRANSPORTISTA", iDTRANSPORTISTAParameter);
+        }
+    
+        public virtual int ACTUALIZASUBE(Nullable<decimal> iDSUBE, Nullable<System.DateTime> fECHASUBE, Nullable<decimal> pRECIOSUBE, Nullable<decimal> iDPRODUCTO, Nullable<decimal> iDSOLICITUD)
+        {
+            var iDSUBEParameter = iDSUBE.HasValue ?
+                new ObjectParameter("IDSUBE", iDSUBE) :
+                new ObjectParameter("IDSUBE", typeof(decimal));
+    
+            var fECHASUBEParameter = fECHASUBE.HasValue ?
+                new ObjectParameter("FECHASUBE", fECHASUBE) :
+                new ObjectParameter("FECHASUBE", typeof(System.DateTime));
+    
+            var pRECIOSUBEParameter = pRECIOSUBE.HasValue ?
+                new ObjectParameter("PRECIOSUBE", pRECIOSUBE) :
+                new ObjectParameter("PRECIOSUBE", typeof(decimal));
+    
+            var iDPRODUCTOParameter = iDPRODUCTO.HasValue ?
+                new ObjectParameter("IDPRODUCTO", iDPRODUCTO) :
+                new ObjectParameter("IDPRODUCTO", typeof(decimal));
+    
+            var iDSOLICITUDParameter = iDSOLICITUD.HasValue ?
+                new ObjectParameter("IDSOLICITUD", iDSOLICITUD) :
+                new ObjectParameter("IDSOLICITUD", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZASUBE", iDSUBEParameter, fECHASUBEParameter, pRECIOSUBEParameter, iDPRODUCTOParameter, iDSOLICITUDParameter);
+        }
+    
+        public virtual int AGREGASUBE(Nullable<System.DateTime> fECHASUBE, Nullable<decimal> pRECIOSUBE, Nullable<decimal> iDPRODUCTO, Nullable<decimal> iDSOLICITUD)
+        {
+            var fECHASUBEParameter = fECHASUBE.HasValue ?
+                new ObjectParameter("FECHASUBE", fECHASUBE) :
+                new ObjectParameter("FECHASUBE", typeof(System.DateTime));
+    
+            var pRECIOSUBEParameter = pRECIOSUBE.HasValue ?
+                new ObjectParameter("PRECIOSUBE", pRECIOSUBE) :
+                new ObjectParameter("PRECIOSUBE", typeof(decimal));
+    
+            var iDPRODUCTOParameter = iDPRODUCTO.HasValue ?
+                new ObjectParameter("IDPRODUCTO", iDPRODUCTO) :
+                new ObjectParameter("IDPRODUCTO", typeof(decimal));
+    
+            var iDSOLICITUDParameter = iDSOLICITUD.HasValue ?
+                new ObjectParameter("IDSOLICITUD", iDSOLICITUD) :
+                new ObjectParameter("IDSOLICITUD", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AGREGASUBE", fECHASUBEParameter, pRECIOSUBEParameter, iDPRODUCTOParameter, iDSOLICITUDParameter);
+        }
+    
+        public virtual int ELIMINASUBE(Nullable<decimal> iDSUBE)
+        {
+            var iDSUBEParameter = iDSUBE.HasValue ?
+                new ObjectParameter("IDSUBE", iDSUBE) :
+                new ObjectParameter("IDSUBE", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINASUBE", iDSUBEParameter);
+        }
+    
+        public virtual int ACTUALIZAVENTAE(Nullable<decimal> iDVENTAE, Nullable<decimal> pRECIOVENTAE)
+        {
+            var iDVENTAEParameter = iDVENTAE.HasValue ?
+                new ObjectParameter("IDVENTAE", iDVENTAE) :
+                new ObjectParameter("IDVENTAE", typeof(decimal));
+    
+            var pRECIOVENTAEParameter = pRECIOVENTAE.HasValue ?
+                new ObjectParameter("PRECIOVENTAE", pRECIOVENTAE) :
+                new ObjectParameter("PRECIOVENTAE", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZAVENTAE", iDVENTAEParameter, pRECIOVENTAEParameter);
+        }
+    
+        public virtual int AGREGAVENTAE(Nullable<System.DateTime> fECHAVENTAE, Nullable<decimal> iDCLIENTE2, Nullable<decimal> pRECIOVENTAE, Nullable<decimal> iDPRODUCTO, Nullable<decimal> iDSOLICITUD, Nullable<decimal> iDOPCION)
+        {
+            var fECHAVENTAEParameter = fECHAVENTAE.HasValue ?
+                new ObjectParameter("FECHAVENTAE", fECHAVENTAE) :
+                new ObjectParameter("FECHAVENTAE", typeof(System.DateTime));
+    
+            var iDCLIENTE2Parameter = iDCLIENTE2.HasValue ?
+                new ObjectParameter("IDCLIENTE2", iDCLIENTE2) :
+                new ObjectParameter("IDCLIENTE2", typeof(decimal));
+    
+            var pRECIOVENTAEParameter = pRECIOVENTAE.HasValue ?
+                new ObjectParameter("PRECIOVENTAE", pRECIOVENTAE) :
+                new ObjectParameter("PRECIOVENTAE", typeof(decimal));
+    
+            var iDPRODUCTOParameter = iDPRODUCTO.HasValue ?
+                new ObjectParameter("IDPRODUCTO", iDPRODUCTO) :
+                new ObjectParameter("IDPRODUCTO", typeof(decimal));
+    
+            var iDSOLICITUDParameter = iDSOLICITUD.HasValue ?
+                new ObjectParameter("IDSOLICITUD", iDSOLICITUD) :
+                new ObjectParameter("IDSOLICITUD", typeof(decimal));
+    
+            var iDOPCIONParameter = iDOPCION.HasValue ?
+                new ObjectParameter("IDOPCION", iDOPCION) :
+                new ObjectParameter("IDOPCION", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AGREGAVENTAE", fECHAVENTAEParameter, iDCLIENTE2Parameter, pRECIOVENTAEParameter, iDPRODUCTOParameter, iDSOLICITUDParameter, iDOPCIONParameter);
+        }
+    
+        public virtual int ELIMINAVENTAE(Nullable<decimal> iDVENTAE)
+        {
+            var iDVENTAEParameter = iDVENTAE.HasValue ?
+                new ObjectParameter("IDVENTAE", iDVENTAE) :
+                new ObjectParameter("IDVENTAE", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINAVENTAE", iDVENTAEParameter);
+        }
+    
+        public virtual int ACTUALIZAOPCION(Nullable<decimal> iDVENTAE, Nullable<decimal> iDOPCION)
+        {
+            var iDVENTAEParameter = iDVENTAE.HasValue ?
+                new ObjectParameter("IDVENTAE", iDVENTAE) :
+                new ObjectParameter("IDVENTAE", typeof(decimal));
+    
+            var iDOPCIONParameter = iDOPCION.HasValue ?
+                new ObjectParameter("IDOPCION", iDOPCION) :
+                new ObjectParameter("IDOPCION", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZAOPCION", iDVENTAEParameter, iDOPCIONParameter);
         }
     }
 }

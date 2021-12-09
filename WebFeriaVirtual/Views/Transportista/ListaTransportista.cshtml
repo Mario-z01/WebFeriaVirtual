@@ -3,10 +3,10 @@
     ViewBag.Title = "ListaTransportista";
 }
 
-<h2>Lista usuarios Productor</h2>
+<h2>Lista usuarios Transportistas</h2>
 @{ List<Transportista> transportistas = (List<Transportista>)ViewBag.transportistas;}
 @Html.ActionLink("Crear Usuario Transportista", "CreateTransportista")
-<table border="1">
+<table cellspacing="10" cellpadding="10" border="1">
     <tr>
         <th>Nombre</th>
         <th>Edad</th>
@@ -35,6 +35,8 @@
 
 </table>
 
+@Html.ActionLink("Volver", "ListaUsuarios", "Home")
+<br />
 @TempData["Mensaje"]
 
 

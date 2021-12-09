@@ -3,11 +3,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Listado de solicitudes realizadas</h2>
+
+<h1>Listado de<span> solicitudes </span>realizadas</h1>
 
 @{ List<Solicitud> solicitudes = (List<Solicitud>)ViewBag.solicitudes;}
 @Html.ActionLink("Ingresar una nueva solicitud", "Create")
-<table border="1">
+<table cellspacing="10" cellpadding="10" border="1">
     <tr>
         <th>Tipo Producto</th>
         <th>Calidad producto</th>
@@ -28,6 +29,6 @@
     }
 
 </table>
-
+@Html.ActionLink("Volver", "IndexExt", "UsuarioExt")
 @TempData["Mensaje"]
 

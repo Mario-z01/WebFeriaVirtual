@@ -16,6 +16,12 @@ namespace WebFeriaVirtual.Controllers
             return View();
         }
 
+        public ActionResult Print()
+        {
+            return View();
+        }
+
+
         public ActionResult TipoUsuario()
         {
             return View();
@@ -28,6 +34,17 @@ namespace WebFeriaVirtual.Controllers
 
         public ActionResult ListaCrearUsuarios()
         {
+            return View();
+        }
+
+        public ActionResult SubastaExt()
+        {
+            return View();
+        }
+
+        public ActionResult SubE()
+        {
+            ViewBag.productos = new Producto().ReadAll();
             return View();
         }
     }

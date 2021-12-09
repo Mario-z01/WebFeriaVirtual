@@ -4,14 +4,15 @@
     ViewBag.Title = "ListaUsuExt";
 }
 
-<h2>Lista de usuarios Cliente Externo</h2>
+<h2>Lista de usuarios Cliente</h2>
 
 @{ List<UsuarioExterno> usuarioExternos = (List<UsuarioExterno>)ViewBag.usuarioExternos;}
-@Html.ActionLink("Crear Usuario cliente externo", "CreateUsuExt")
-<table border="1">
+@Html.ActionLink("Crear Nuevo Usuario", "CreateusuExt")
+<table cellspacing="10" cellpadding="10" border="1">
     <tbody>
         <tr>
             <th>Nombre</th>
+            <th>Pais</th>
             <th>Direccion</th>
             <th>Telefono</th>
             <th>Correo</th>
@@ -22,6 +23,7 @@
         {
             <tr>
                 <td>@usuarioExterno.Nombre</td>
+                <td>@usuarioExterno.Pais</td>
                 <td>@usuarioExterno.Direccion</td>
                 <td>@usuarioExterno.Telefono</td>
                 <td>@usuarioExterno.Correo</td>
@@ -36,6 +38,8 @@
     </tbody>
 </table>
 
+@Html.ActionLink("Volver", "ListaUsuarios", "Home")
+<br />
 @TempData["Mensaje"]
 
 

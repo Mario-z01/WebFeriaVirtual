@@ -14,11 +14,19 @@ namespace WebFeriaVirtual.DALC
     
     public partial class CLIENTE_EXTERNO
     {
+        public CLIENTE_EXTERNO()
+        {
+            this.VENTA_EXT = new HashSet<VENTA_EXT>();
+        }
+    
         public decimal ID_CLIENTE2 { get; set; }
         public string NOMBRE_CLIENTE2 { get; set; }
         public string DIRECCION_CLIENTE2 { get; set; }
         public string TELEFONO_CLIENTE2 { get; set; }
         public string EMAIL_CLIENTE2 { get; set; }
         public string CONTRASEÑA_CLIENTE2 { get; set; }
+        public string NOM_PAIS { get; set; }
+    
+        public virtual ICollection<VENTA_EXT> VENTA_EXT { get; set; }
     }
 }

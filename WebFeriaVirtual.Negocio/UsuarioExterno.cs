@@ -11,6 +11,7 @@ namespace WebFeriaVirtual.Negocio
     {
         public decimal Id { get; set; }
         public String Nombre { get; set; }
+        public String Pais { get; set; }
         public String Direccion { get; set; }
         public String Telefono { get; set; }
         public String Correo { get; set; }
@@ -32,6 +33,7 @@ namespace WebFeriaVirtual.Negocio
             {
                 Id = e.ID_CLIENTE2,
                 Nombre = e.NOMBRE_CLIENTE2,
+                Pais = e.NOM_PAIS,
                 Direccion = e.DIRECCION_CLIENTE2,
                 Telefono = e.TELEFONO_CLIENTE2,
                 Correo = e.EMAIL_CLIENTE2,
@@ -44,7 +46,7 @@ namespace WebFeriaVirtual.Negocio
             try
             {
                 //llamando al PA para crear usuario ClienteExt
-                db.AGREGARCLIENTEEXT(this.Nombre, this.Direccion,
+                db.AGREGARCLIENTEEXT(this.Nombre,this.Pais, this.Direccion,
                     this.Telefono, this.Correo, this.Contraseña);
                 return true;
             }
@@ -61,6 +63,7 @@ namespace WebFeriaVirtual.Negocio
             {
                 Id = c.ID_CLIENTE2,
                 Nombre = c.NOMBRE_CLIENTE2,
+                Pais = c.NOM_PAIS,
                 Direccion = c.DIRECCION_CLIENTE2,
                 Telefono = c.TELEFONO_CLIENTE2,
                 Correo = c.EMAIL_CLIENTE2,
@@ -72,7 +75,7 @@ namespace WebFeriaVirtual.Negocio
         {
             try
             {
-                db.ACTUALIZAEXTERNO(this.Id, this.Nombre, this.Direccion,
+                db.ACTUALIZAEXTERNO(this.Id, this.Nombre,this.Pais, this.Direccion,
                     this.Telefono, this.Correo, this.Contraseña);
 
                 return true;

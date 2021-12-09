@@ -3,11 +3,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Listado de productos</h2>
+<h1>Listado de<span> Productos </span></h1>
 
 @{ List<Producto> productos = (List<Producto>)ViewBag.productos;}
 @Html.ActionLink("Ingresar Productos", "Create")
-<table border="1">
+<table cellspacing="10" cellpadding="10" border="1">
     <tr>
         <th>Tipo Producto</th>
         <th>Stock</th>
@@ -28,6 +28,6 @@
     }
 
 </table>
-
+@Html.ActionLink("Volver", "IndexProduct", "Productor")
 @TempData["Mensaje"]
 

@@ -3,13 +3,17 @@
     ViewBag.Title = "CreateUsuExt";
 }
 
-<h2>Agregar nuevo Usuario cliente Externo</h2>
-@Html.ActionLink("Lista de usuarios cliente externo", "ListaUsuExt")
+<h2>Agregar nuevo Usuario cliente</h2>
+@Html.ActionLink("Lista de usuarios Clientes", "ListaUsuExt")
 @using (Html.BeginForm())
 {
     @Html.LabelFor(e => e.Nombre)
     <br />
     @Html.TextBoxFor(e => e.Nombre)
+    <br />
+    @Html.LabelFor(e => e.Pais)
+    <br />
+    @Html.TextBoxFor(e => e.Pais)
     <br />
     @Html.LabelFor(e => e.Direccion)
     <br />

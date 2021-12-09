@@ -22,6 +22,7 @@
     </Key>
     <Property Name="ID_CLIENTE2" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="NOMBRE_CLIENTE2" Type="varchar2" MaxLength="50" Nullable="false" />
+    <Property Name="NOM_PAIS" Type="varchar2" MaxLength="50" Nullable="false" />
     <Property Name="DIRECCION_CLIENTE2" Type="varchar2" MaxLength="100" Nullable="false" />
     <Property Name="TELEFONO_CLIENTE2" Type="varchar2" MaxLength="12" Nullable="false" />
     <Property Name="EMAIL_CLIENTE2" Type="varchar2" MaxLength="100" Nullable="false" />
@@ -45,6 +46,13 @@
     </Key>
     <Property Name="ID_EMPRESA" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="NOMBRE_EMPRESA" Type="varchar2" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OPCION">
+    <Key>
+      <PropertyRef Name="ID_OPCION" />
+    </Key>
+    <Property Name="ID_OPCION" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE_OPCION" Type="varchar2" MaxLength="50" />
   </EntityType>
   <EntityType Name="PRODUCTO">
     <Key>
@@ -102,6 +110,18 @@
     <Property Name="EMAIL_T" Type="varchar2" MaxLength="100" Nullable="false" />
     <Property Name="CONTRASEÑA_T" Type="varchar2" MaxLength="20" Nullable="false" />
     <Property Name="ID_EMPRESA" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VENTA_EXT">
+    <Key>
+      <PropertyRef Name="ID_VENTAE" />
+    </Key>
+    <Property Name="ID_VENTAE" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="FECHA_VENTAE" Type="date" Nullable="false" />
+    <Property Name="ID_CLIENTE2" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PRECIO_VENTAE" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ID_PRODUCTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ID_SOLICITUD" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ID_OPCION" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
   <Association Name="SYS_C007096">
     <End Role="TIPO" Type="Self.TIPO" Multiplicity="1" />
@@ -163,6 +183,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="SYS_C007298">
+    <End Role="OPCION" Type="Self.OPCION" Multiplicity="1" />
+    <End Role="VENTA_EXT" Type="Self.VENTA_EXT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OPCION">
+        <PropertyRef Name="ID_OPCION" />
+      </Principal>
+      <Dependent Role="VENTA_EXT">
+        <PropertyRef Name="ID_OPCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007299">
+    <End Role="CLIENTE_EXTERNO" Type="Self.CLIENTE_EXTERNO" Multiplicity="1" />
+    <End Role="VENTA_EXT" Type="Self.VENTA_EXT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE_EXTERNO">
+        <PropertyRef Name="ID_CLIENTE2" />
+      </Principal>
+      <Dependent Role="VENTA_EXT">
+        <PropertyRef Name="ID_CLIENTE2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007300">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="VENTA_EXT" Type="Self.VENTA_EXT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="ID_PRODUCTO" />
+      </Principal>
+      <Dependent Role="VENTA_EXT">
+        <PropertyRef Name="ID_PRODUCTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007301">
+    <End Role="SOLICITUD" Type="Self.SOLICITUD" Multiplicity="1" />
+    <End Role="VENTA_EXT" Type="Self.VENTA_EXT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD">
+        <PropertyRef Name="ID_SOLICITUD" />
+      </Principal>
+      <Dependent Role="VENTA_EXT">
+        <PropertyRef Name="ID_SOLICITUD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="ACTUALIZAEMPRESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDEMPRESA" Type="number" Mode="In" />
     <Parameter Name="NOMBREEMPRESA" Type="varchar2" Mode="In" />
@@ -170,6 +238,7 @@
   <Function Name="ACTUALIZAEXTERNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDCLIENTE2" Type="number" Mode="In" />
     <Parameter Name="NOMCLIENTE2" Type="varchar2" Mode="In" />
+    <Parameter Name="PAIS" Type="varchar2" Mode="In" />
     <Parameter Name="DIRECLIENTE2" Type="varchar2" Mode="In" />
     <Parameter Name="FONOCLIENTE2" Type="varchar2" Mode="In" />
     <Parameter Name="CORREOCLIENTE2" Type="varchar2" Mode="In" />
@@ -183,6 +252,10 @@
     <Parameter Name="FONOCLIENTE1" Type="varchar2" Mode="In" />
     <Parameter Name="CORREOCLIENTE1" Type="varchar2" Mode="In" />
     <Parameter Name="CONTRACLIENTE1" Type="varchar2" Mode="In" />
+  </Function>
+  <Function Name="ACTUALIZAOPCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="IDVENTAE" Type="number" Mode="In" />
+    <Parameter Name="IDOPCION" Type="number" Mode="In" />
   </Function>
   <Function Name="ACTUALIZAPRODUCTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDPRODUCTO" Type="number" Mode="In" />
@@ -206,6 +279,13 @@
     <Parameter Name="CALIDADID" Type="number" Mode="In" />
     <Parameter Name="CANTIDADSOLICITUD" Type="number" Mode="In" />
   </Function>
+  <Function Name="ACTUALIZASUBE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="IDSUBE" Type="number" Mode="In" />
+    <Parameter Name="FECHASUBE" Type="date" Mode="In" />
+    <Parameter Name="PRECIOSUBE" Type="number" Mode="In" />
+    <Parameter Name="IDPRODUCTO" Type="number" Mode="In" />
+    <Parameter Name="IDSOLICITUD" Type="number" Mode="In" />
+  </Function>
   <Function Name="ACTUALIZATIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDTIPO" Type="number" Mode="In" />
     <Parameter Name="NOMBRETIPO" Type="varchar2" Mode="In" />
@@ -218,6 +298,10 @@
     <Parameter Name="EMAILTRANSPORTISTA" Type="varchar2" Mode="In" />
     <Parameter Name="CONTRATRANSPORTISTA" Type="varchar2" Mode="In" />
     <Parameter Name="IDEMPRESA" Type="number" Mode="In" />
+  </Function>
+  <Function Name="ACTUALIZAVENTAE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="IDVENTAE" Type="number" Mode="In" />
+    <Parameter Name="PRECIOVENTAE" Type="number" Mode="In" />
   </Function>
   <Function Name="AGREGAEMPRESA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="NOMBREEMPRESA" Type="varchar2" Mode="In" />
@@ -238,6 +322,7 @@
   </Function>
   <Function Name="AGREGARCLIENTEEXT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="NOMCLIENTE2" Type="varchar2" Mode="In" />
+    <Parameter Name="PAIS" Type="varchar2" Mode="In" />
     <Parameter Name="DIRECLIENTE2" Type="varchar2" Mode="In" />
     <Parameter Name="FONOCLIENTE2" Type="varchar2" Mode="In" />
     <Parameter Name="CORREOCLIENTE2" Type="varchar2" Mode="In" />
@@ -256,6 +341,12 @@
     <Parameter Name="CALIDADID" Type="number" Mode="In" />
     <Parameter Name="CANTIDADSOLICITUD" Type="number" Mode="In" />
   </Function>
+  <Function Name="AGREGASUBE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="FECHASUBE" Type="date" Mode="In" />
+    <Parameter Name="PRECIOSUBE" Type="number" Mode="In" />
+    <Parameter Name="IDPRODUCTO" Type="number" Mode="In" />
+    <Parameter Name="IDSOLICITUD" Type="number" Mode="In" />
+  </Function>
   <Function Name="AGREGATIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="NOMBRETIPO" Type="varchar2" Mode="In" />
   </Function>
@@ -266,6 +357,14 @@
     <Parameter Name="EMAILTRANSPORTISTA" Type="varchar2" Mode="In" />
     <Parameter Name="CONTRATRANSPORTISTA" Type="varchar2" Mode="In" />
     <Parameter Name="IDEMPRESA" Type="number" Mode="In" />
+  </Function>
+  <Function Name="AGREGAVENTAE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="FECHAVENTAE" Type="date" Mode="In" />
+    <Parameter Name="IDCLIENTE2" Type="number" Mode="In" />
+    <Parameter Name="PRECIOVENTAE" Type="number" Mode="In" />
+    <Parameter Name="IDPRODUCTO" Type="number" Mode="In" />
+    <Parameter Name="IDSOLICITUD" Type="number" Mode="In" />
+    <Parameter Name="IDOPCION" Type="number" Mode="In" />
   </Function>
   <Function Name="ELIMINAEXTERNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDCLIENTE2" Type="number" Mode="In" />
@@ -291,18 +390,23 @@
   <Function Name="ELIMINATRANSPORTISTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
     <Parameter Name="IDTRANSPORTISTA" Type="number" Mode="In" />
   </Function>
+  <Function Name="ELIMINAVENTAE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="USUARIOFERIA1">
+    <Parameter Name="IDVENTAE" Type="number" Mode="In" />
+  </Function>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="CALIDAD" EntityType="Self.CALIDAD" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="CLIENTE_EXTERNO" EntityType="Self.CLIENTE_EXTERNO" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="CLIENTE_INTERNO" EntityType="Self.CLIENTE_INTERNO" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="EMPRESA" EntityType="Self.EMPRESA" Schema="USUARIOFERIA1" store:Type="Tables" />
+    <EntitySet Name="OPCION" EntityType="Self.OPCION" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="PRODUCTOR" EntityType="Self.PRODUCTOR" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="REGION" EntityType="Self.REGION" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="SOLICITUD" EntityType="Self.SOLICITUD" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="TIPO" EntityType="Self.TIPO" Schema="USUARIOFERIA1" store:Type="Tables" />
     <EntitySet Name="TRANSPORTISTA" EntityType="Self.TRANSPORTISTA" Schema="USUARIOFERIA1" store:Type="Tables" />
+    <EntitySet Name="VENTA_EXT" EntityType="Self.VENTA_EXT" Schema="USUARIOFERIA1" store:Type="Tables" />
     <AssociationSet Name="SYS_C007096" Association="Self.SYS_C007096">
       <End Role="TIPO" EntitySet="TIPO" />
       <End Role="PRODUCTO" EntitySet="PRODUCTO" />
@@ -322,6 +426,22 @@
     <AssociationSet Name="SYS_C007230" Association="Self.SYS_C007230">
       <End Role="REGION" EntitySet="REGION" />
       <End Role="CLIENTE_INTERNO" EntitySet="CLIENTE_INTERNO" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007298" Association="Self.SYS_C007298">
+      <End Role="OPCION" EntitySet="OPCION" />
+      <End Role="VENTA_EXT" EntitySet="VENTA_EXT" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007299" Association="Self.SYS_C007299">
+      <End Role="CLIENTE_EXTERNO" EntitySet="CLIENTE_EXTERNO" />
+      <End Role="VENTA_EXT" EntitySet="VENTA_EXT" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007300" Association="Self.SYS_C007300">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="VENTA_EXT" EntitySet="VENTA_EXT" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007301" Association="Self.SYS_C007301">
+      <End Role="SOLICITUD" EntitySet="SOLICITUD" />
+      <End Role="VENTA_EXT" EntitySet="VENTA_EXT" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -14,6 +14,11 @@ namespace WebFeriaVirtual.DALC
     
     public partial class PRODUCTO
     {
+        public PRODUCTO()
+        {
+            this.VENTA_EXT = new HashSet<VENTA_EXT>();
+        }
+    
         public decimal ID_PRODUCTO { get; set; }
         public decimal ID_TIPO { get; set; }
         public decimal STOCK_PRODUCTO { get; set; }
@@ -21,5 +26,6 @@ namespace WebFeriaVirtual.DALC
         public string IMAGEN_PRODUCTO { get; set; }
     
         public virtual TIPO TIPO { get; set; }
+        public virtual ICollection<VENTA_EXT> VENTA_EXT { get; set; }
     }
 }

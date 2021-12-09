@@ -78,6 +78,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FeriaModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="OPCION.cs">
+      <DependentUpon>FeriaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PRODUCTO.cs">
       <DependentUpon>FeriaModel.tt</DependentUpon>
     </Compile>
@@ -95,6 +98,9 @@
       <DependentUpon>FeriaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TRANSPORTISTA.cs">
+      <DependentUpon>FeriaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VENTA_EXT.cs">
       <DependentUpon>FeriaModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

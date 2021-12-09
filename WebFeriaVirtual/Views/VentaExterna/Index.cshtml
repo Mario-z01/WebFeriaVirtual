@@ -1,0 +1,40 @@
+﻿@using WebFeriaVirtual.Negocio;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Ventas</h2>
+
+@{ List<VentaExterna> ventas = (List<VentaExterna>)ViewBag.ventas;}
+@Html.ActionLink("Generar Venta", "Create")
+<table cellspacing="10" cellpadding="10" border="1">
+    <tr>
+        <th>Fecha</th>
+        <th>Pais</th>
+        <th>Tipo Producto</th>
+        <th>Cantidad en Kg</th>
+        <th>Precio Inicial subasta</th>
+        <th>Estado Venta</th>
+        <th>Opciones</th>
+    </tr>
+    @foreach (var ventaExterna in ventas)
+    {
+        <tr>
+            <td>@ventaExterna.Fecha</td>
+            <td>@ventaExterna.UsuarioExterno.Pais</td>
+            <td>@ventaExterna.Producto.Tipo.Nombre</td>
+            <td>@ventaExterna.Solicitud.Cantidad</td>
+            <td>@ventaExterna.Precio</td>
+            <td>@ventaExterna.Opcion.Nombre</td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = ventaExterna.Id })
+                @Html.ActionLink("Modificar Estado", "Edit", new { id = ventaExterna.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Volver", "TipoVenta", "VentaExterna")
+<br />
+@TempData["Mensaje"]
+

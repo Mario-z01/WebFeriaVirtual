@@ -3,21 +3,24 @@
     ViewBag.Title = "LoginExt";
 }
 
-<h2>Ingresa tus credenciales de usuario Cliente Externo</h2>
+<h1>Ingresa tus credenciales de <span> Cliente</span></h1>
+<h2>
+    @using (Html.BeginForm())
+    {
 
-@using (Html.BeginForm())
-{
-    @Html.LabelFor(e => e.Correo, "Email")
-    <br />
-    @Html.TextBoxFor(e => e.Correo, new { type = "Email" })
-    <br />
-    @Html.LabelFor(e => e.Contraseña, "Contraseña")
-    <br />
-    @Html.PasswordFor(e => e.Contraseña)
-    <br />
-    <br />
-    <button>Ingresar</button>
-}
+        @Html.LabelFor(e => e.Correo, "Email")
+        <br />
+        @Html.TextBoxFor(e => e.Correo, new { type = "Email" })
+        <br />
+        @Html.LabelFor(e => e.Contraseña, "Contraseña")
+        <br />
+        @Html.PasswordFor(e => e.Contraseña)
+        <br />
+        <br />
+        <button>Ingresar</button>
+    }
+</h2>
+
 
 <br />
 

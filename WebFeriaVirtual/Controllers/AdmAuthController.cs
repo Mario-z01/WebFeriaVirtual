@@ -40,9 +40,14 @@ namespace WebFeriaVirtual.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
+            TempData["mensaje"] = "Sesion cerrada correctamente";
             return RedirectToAction("TipoUsuario", "Home");
                                     
         }
+
+        
+
+
     }
     
 }

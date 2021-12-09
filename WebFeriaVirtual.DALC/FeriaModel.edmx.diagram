@@ -4,23 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a22ec79ab7e148c7ac59a5ea3d69f2a8" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.ADMINISTRADOR" Width="1.5" PointX="5.625" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CLIENTE_EXTERNO" Width="1.5" PointX="7.625" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CLIENTE_INTERNO" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+      <Diagram DiagramId="a22ec79ab7e148c7ac59a5ea3d69f2a8" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="Model.ADMINISTRADOR" Width="1.5" PointX="12.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLIENTE_EXTERNO" Width="1.5" PointX="9.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLIENTE_INTERNO" Width="1.5" PointX="9.125" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PRODUCTO" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.TIPO" Width="1.5" PointX="0.5" PointY="2.375" IsExpanded="true" />
         <AssociationConnector Association="Model.SYS_C007096" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Model.CALIDAD" Width="1.5" PointX="0.5" PointY="4.375" />
-        <EntityTypeShape EntityType="Model.SOLICITUD" Width="1.5" PointX="3" PointY="3.25" />
+        <EntityTypeShape EntityType="Model.SOLICITUD" Width="1.5" PointX="3" PointY="3.625" />
         <AssociationConnector Association="Model.SYS_C007145" />
         <AssociationConnector Association="Model.SYS_C007144" />
-        <EntityTypeShape EntityType="Model.PRODUCTOR" Width="1.5" PointX="5.5" PointY="1" />
+        <EntityTypeShape EntityType="Model.PRODUCTOR" Width="1.5" PointX="11.375" PointY="5.75" />
         <EntityTypeShape EntityType="Model.TRANSPORTISTA" Width="1.5" PointX="3" PointY="7" />
         <EntityTypeShape EntityType="Model.EMPRESA" Width="1.5" PointX="0.75" PointY="7.5" />
         <AssociationConnector Association="Model.SYS_C007197" />
-        <EntityTypeShape EntityType="Model.REGION" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="Model.REGION" Width="1.5" PointX="8.875" PointY="4.75" />
         <AssociationConnector Association="Model.SYS_C007230" />
+        <EntityTypeShape EntityType="Model.VENTA_EXT" Width="1.5" PointX="6.125" PointY="1.125" />
+        <AssociationConnector Association="Model.SYS_C007288" />
+        <AssociationConnector Association="Model.SYS_C007289" />
+        <EntityTypeShape EntityType="Model.OPCION" Width="1.5" PointX="6.125" PointY="6.125" />
+        <AssociationConnector Association="Model.SYS_C007298" />
+        <AssociationConnector Association="Model.SYS_C007299" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

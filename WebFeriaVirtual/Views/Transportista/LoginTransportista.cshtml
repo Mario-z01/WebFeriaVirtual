@@ -3,18 +3,23 @@
     ViewBag.Title = "LoginTransportista";
 }
 
-<h2>Ingresa tus credenciales de Usuario Transportista</h2>
+<h1>Ingresa tus credenciales de <span> Usuario Transportista </span></h1>
+<h2>
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(t => t.Correo, "Correo")
+        <br />
+        @Html.TextBoxFor(t => t.Correo, new { type = "Correo" })
+        <br />
+        @Html.LabelFor(t => t.Contraseña, "Contraseña")
+        <br />
+        @Html.PasswordFor(t => t.Contraseña)
+        <br />
+        <br />
+        <button>Ingresar</button>
+    }
+</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.LabelFor(t => t.Correo, "Correo")
-    @Html.TextBoxFor(t => t.Correo, new { type = "Correo" })
-    <br />
-    @Html.LabelFor(t => t.Contraseña, "Contraseña")
-    @Html.PasswordFor(t => t.Contraseña)
-    <br />
-    <button>Ingresar</button>
-}
 
 <br />
 

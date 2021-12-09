@@ -14,6 +14,7 @@
     <EntitySetMapping Name="CLIENTE_EXTERNO">
       <EntityTypeMapping TypeName="Model.CLIENTE_EXTERNO">
         <MappingFragment StoreEntitySet="CLIENTE_EXTERNO">
+          <ScalarProperty Name="NOM_PAIS" ColumnName="NOM_PAIS" />
           <ScalarProperty Name="ID_CLIENTE2" ColumnName="ID_CLIENTE2" />
           <ScalarProperty Name="NOMBRE_CLIENTE2" ColumnName="NOMBRE_CLIENTE2" />
           <ScalarProperty Name="DIRECCION_CLIENTE2" ColumnName="DIRECCION_CLIENTE2" />
@@ -139,5 +140,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ACTUALIZASUBE" FunctionName="Model.Store.ACTUALIZASUBE" />
+    <FunctionImportMapping FunctionImportName="AGREGASUBE" FunctionName="Model.Store.AGREGASUBE" />
+    <EntitySetMapping Name="VENTA_EXT">
+      <EntityTypeMapping TypeName="Model.VENTA_EXT">
+        <MappingFragment StoreEntitySet="VENTA_EXT">
+          <ScalarProperty Name="ID_OPCION" ColumnName="ID_OPCION" />
+          <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
+          <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+          <ScalarProperty Name="PRECIO_VENTAE" ColumnName="PRECIO_VENTAE" />
+          <ScalarProperty Name="ID_CLIENTE2" ColumnName="ID_CLIENTE2" />
+          <ScalarProperty Name="FECHA_VENTAE" ColumnName="FECHA_VENTAE" />
+          <ScalarProperty Name="ID_VENTAE" ColumnName="ID_VENTAE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ACTUALIZAVENTAE" FunctionName="Model.Store.ACTUALIZAVENTAE" />
+    <FunctionImportMapping FunctionImportName="AGREGAVENTAE" FunctionName="Model.Store.AGREGAVENTAE" />
+    <FunctionImportMapping FunctionImportName="ELIMINAVENTAE" FunctionName="Model.Store.ELIMINAVENTAE" />
+    <EntitySetMapping Name="OPCION">
+      <EntityTypeMapping TypeName="Model.OPCION">
+        <MappingFragment StoreEntitySet="OPCION">
+          <ScalarProperty Name="NOMBRE_OPCION" ColumnName="NOMBRE_OPCION" />
+          <ScalarProperty Name="ID_OPCION" ColumnName="ID_OPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ACTUALIZAOPCION" FunctionName="Model.Store.ACTUALIZAOPCION" />
   </EntityContainerMapping>
 </Mapping>

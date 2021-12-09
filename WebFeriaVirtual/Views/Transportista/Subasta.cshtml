@@ -1,0 +1,37 @@
+﻿@using WebFeriaVirtual.Negocio;
+@{
+    ViewBag.Title = "Subasta";
+}
+
+<h1>Realizar <span>Subasta</span></h1>
+
+@{ List<VentaExterna> ventas = (List<VentaExterna>)ViewBag.ventas;}
+<table cellspacing="10" cellpadding="10" border="1">
+   
+    <tr>
+         <th>Fecha</th>
+         <th>Pais</th>
+         <th>Tipo Producto</th>
+         <th>Cantidad en Kg</th>
+         <th>Precio subasta</th>
+         <th>Opciones</th>
+    </tr>
+    @foreach (var ventaExterna in ventas)
+    {
+        <tr>
+            <td>@ventaExterna.Fecha</td>
+            <td>@ventaExterna.UsuarioExterno.Pais</td>
+            <td>@ventaExterna.Producto.Tipo.Nombre</td>
+            <td>@ventaExterna.Solicitud.Cantidad</td>
+            <td>@ventaExterna.Precio</td>
+            <td>
+                @Html.ActionLink("Aumentar valor por transporte", "EditSubasta", new { id = ventaExterna.Id })
+
+            </td>
+
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Volver", "Index")
+@TempData["Mensaje"]

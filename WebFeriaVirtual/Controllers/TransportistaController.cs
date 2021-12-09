@@ -42,19 +42,26 @@ namespace WebFeriaVirtual.Controllers
         {
             ViewBag.empresas = new Empresa().ReadAll();
         }
-
         [HttpPost]
-        public ActionResult CreateTransportista([Bind(Include = "Nombre,Edad,Telefono,Correo,Contraseña,IdEmpresa")]Transportista transportista)
+        public ActionResult CreateTransportista([Bind(Include = "Nombre,Edad,Telefono,Correo,Contraseña,IdEmpresa")]Transportista transportista )
         {
             try
             {
-                // TODO: Add insert logic here
                 transportista.Save();
-                TempData["mensaje"] = "Usuario Transportista guardado correctamente";
-                return RedirectToAction("ListaTransportista", "Transportista");
+                if (transportista.Nombre != null & transportista.Edad != null & transportista.Telefono != null & transportista.Correo != null & transportista.Contraseña != null)
+                {
+                    TempData["mensaje"] = "Usuario Transportista guardado correctamente";
+                    return RedirectToAction("ListaTransportista", "Transportista");
+                }
+                else
+                {
+                    TempData["mensaje"] = "Favor ingresar datos correctos en el registro";
+                    return RedirectToAction("ListaTransportista", "Transportista");
+                }
             }
             catch
             {
+                
                 return View(transportista);
             }
         }
@@ -158,5 +165,49 @@ namespace WebFeriaVirtual.Controllers
                 return View();
             }
         }
+
+        public ActionResult Subasta()
+        {
+            ViewBag.ventas = new VentaExterna().ReadAll();
+            return View();
+        }
+
+        public ActionResult EstadoSubasta()
+        {
+            ViewBag.ventas = new VentaExterna().ReadAll();
+            return View();
+        }
+
+        public ActionResult EditSubasta(int id)
+        {
+            VentaExterna v = new VentaExterna().Find(id);
+
+            if (v == null)
+            {
+                TempData["mensaje"] = "La subasta no existe";
+                return RedirectToAction("Subasta");
+            }
+
+            return View(v);
+        }
+
+        // POST: Producto/Edit/5
+        [HttpPost]
+        public ActionResult EditSubasta([Bind(Include = "Id,Precio")]VentaExterna ventaExterna)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                ventaExterna.Update();
+                TempData["mensaje"] = "Valor subasta modificado correctamente";
+                return RedirectToAction("Subasta");
+            }
+            catch
+            {
+                return View(ventaExterna);
+            }
+        }
+
+
     }
 }

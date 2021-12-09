@@ -19,6 +19,8 @@
     <Property Name="TELEFONO_CLIENTE2" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EMAIL_CLIENTE2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CONTRASEÑA_CLIENTE2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOM_PAIS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="VENTA_EXT" Relationship="Model.SYS_C007299" FromRole="CLIENTE_EXTERNO" ToRole="VENTA_EXT" />
   </EntityType>
   <EntityType Name="CLIENTE_INTERNO">
     <Key>
@@ -43,6 +45,7 @@
     <Property Name="PRECIO_PRODUCTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="IMAGEN_PRODUCTO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="TIPO" Relationship="Self.SYS_C007096" FromRole="PRODUCTO" ToRole="TIPO" />
+    <NavigationProperty Name="VENTA_EXT" Relationship="Model.SYS_C007288" FromRole="PRODUCTO" ToRole="VENTA_EXT" />
   </EntityType>
   <EntityType Name="TIPO">
     <Key>
@@ -91,6 +94,7 @@
     </FunctionImport>
     <FunctionImport Name="AGREGARCLIENTEEXT">
       <Parameter Name="NOMCLIENTE2" Mode="In" Type="String" />
+      <Parameter Name="PAIS" Mode="In" Type="String" />
       <Parameter Name="DIRECLIENTE2" Mode="In" Type="String" />
       <Parameter Name="FONOCLIENTE2" Mode="In" Type="String" />
       <Parameter Name="CORREOCLIENTE2" Mode="In" Type="String" />
@@ -152,6 +156,7 @@
     <FunctionImport Name="ACTUALIZAEXTERNO">
       <Parameter Name="IDCLIENTE2" Mode="In" Type="Decimal" />
       <Parameter Name="NOMCLIENTE2" Mode="In" Type="String" />
+      <Parameter Name="PAIS" Mode="In" Type="String" />
       <Parameter Name="DIRECLIENTE2" Mode="In" Type="String" />
       <Parameter Name="FONOCLIENTE2" Mode="In" Type="String" />
       <Parameter Name="CORREOCLIENTE2" Mode="In" Type="String" />
@@ -225,6 +230,59 @@
       <End Role="REGION" EntitySet="REGION" />
       <End Role="CLIENTE_INTERNO" EntitySet="CLIENTE_INTERNO" />
     </AssociationSet>
+    <FunctionImport Name="ACTUALIZASUBE">
+      <Parameter Name="IDSUBE" Mode="In" Type="Decimal" />
+      <Parameter Name="FECHASUBE" Mode="In" Type="DateTime" />
+      <Parameter Name="PRECIOSUBE" Mode="In" Type="Decimal" />
+      <Parameter Name="IDPRODUCTO" Mode="In" Type="Decimal" />
+      <Parameter Name="IDSOLICITUD" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="AGREGASUBE">
+      <Parameter Name="FECHASUBE" Mode="In" Type="DateTime" />
+      <Parameter Name="PRECIOSUBE" Mode="In" Type="Decimal" />
+      <Parameter Name="IDPRODUCTO" Mode="In" Type="Decimal" />
+      <Parameter Name="IDSOLICITUD" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="ELIMINASUBE">
+      <Parameter Name="IDSUBE" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="VENTA_EXT" EntityType="Model.VENTA_EXT" />
+    <AssociationSet Name="SYS_C007288" Association="Model.SYS_C007288">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="VENTA_EXT" EntitySet="VENTA_EXT" />
+    </AssociationSet>
+    <AssociationSet Name="SYS_C007289" Association="Model.SYS_C007289">
+      <End Role="SOLICITUD" EntitySet="SOLICITUD" />
+      <End Role="VENTA_EXT" EntitySet="VENTA_EXT" />
+    </AssociationSet>
+    <FunctionImport Name="ACTUALIZAVENTAE">
+      <Parameter Name="IDVENTAE" Mode="In" Type="Decimal" />
+      <Parameter Name="PRECIOVENTAE" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="AGREGAVENTAE">
+      <Parameter Name="FECHAVENTAE" Mode="In" Type="DateTime" />
+      <Parameter Name="IDCLIENTE2" Mode="In" Type="Decimal" />
+      <Parameter Name="PRECIOVENTAE" Mode="In" Type="Decimal" />
+      <Parameter Name="IDPRODUCTO" Mode="In" Type="Decimal" />
+      <Parameter Name="IDSOLICITUD" Mode="In" Type="Decimal" />
+      <Parameter Name="IDOPCION" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="ELIMINAVENTAE">
+      <Parameter Name="IDVENTAE" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="OPCION" EntityType="Model.OPCION" />
+    <AssociationSet Name="SYS_C007298" Association="Model.SYS_C007298">
+      <End Role="OPCION" EntitySet="OPCION" />
+      <End Role="VENTA_EXT" EntitySet="VENTA_EXT" />
+    </AssociationSet>
+    <FunctionImport Name="ACTUALIZAOPCION">
+      <Parameter Name="IDVENTAE" Mode="In" Type="Decimal" />
+      <Parameter Name="IDOPCION" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <AssociationSet Name="SYS_C007299" Association="Model.SYS_C007299">
+      <End Role="CLIENTE_EXTERNO" EntitySet="CLIENTE_EXTERNO" />
+      <End Role="VENTA_EXT" EntitySet="VENTA_EXT" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="CALIDAD">
     <Key>
@@ -244,6 +302,7 @@
     <Property Name="CANTIDAD_SOLICITUD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
     <NavigationProperty Name="CALIDAD" Relationship="Model.SYS_C007145" FromRole="SOLICITUD" ToRole="CALIDAD" />
     <NavigationProperty Name="TIPO" Relationship="Model.SYS_C007144" FromRole="SOLICITUD" ToRole="TIPO" />
+    <NavigationProperty Name="VENTA_EXT" Relationship="Model.SYS_C007289" FromRole="SOLICITUD" ToRole="VENTA_EXT" />
   </EntityType>
   <Association Name="SYS_C007145">
     <End Type="Model.CALIDAD" Role="CALIDAD" Multiplicity="1" />
@@ -331,6 +390,78 @@
       </Principal>
       <Dependent Role="CLIENTE_INTERNO">
         <PropertyRef Name="ID_REGION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VENTA_EXT">
+    <Key>
+      <PropertyRef Name="ID_VENTAE" />
+    </Key>
+    <Property Name="ID_VENTAE" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="FECHA_VENTAE" Type="DateTime" Nullable="false" />
+    <Property Name="ID_CLIENTE2" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="PRECIO_VENTAE" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="ID_PRODUCTO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="ID_SOLICITUD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Model.SYS_C007288" FromRole="VENTA_EXT" ToRole="PRODUCTO" />
+    <NavigationProperty Name="SOLICITUD" Relationship="Model.SYS_C007289" FromRole="VENTA_EXT" ToRole="SOLICITUD" />
+    <Property Name="ID_OPCION" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <NavigationProperty Name="OPCION" Relationship="Model.SYS_C007298" FromRole="VENTA_EXT" ToRole="OPCION" />
+    <NavigationProperty Name="CLIENTE_EXTERNO" Relationship="Model.SYS_C007299" FromRole="VENTA_EXT" ToRole="CLIENTE_EXTERNO" />
+  </EntityType>
+  <Association Name="SYS_C007288">
+    <End Type="Model.PRODUCTO" Role="PRODUCTO" Multiplicity="1" />
+    <End Type="Model.VENTA_EXT" Role="VENTA_EXT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="ID_PRODUCTO" />
+      </Principal>
+      <Dependent Role="VENTA_EXT">
+        <PropertyRef Name="ID_PRODUCTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007289">
+    <End Type="Model.SOLICITUD" Role="SOLICITUD" Multiplicity="1" />
+    <End Type="Model.VENTA_EXT" Role="VENTA_EXT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD">
+        <PropertyRef Name="ID_SOLICITUD" />
+      </Principal>
+      <Dependent Role="VENTA_EXT">
+        <PropertyRef Name="ID_SOLICITUD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OPCION">
+    <Key>
+      <PropertyRef Name="ID_OPCION" />
+    </Key>
+    <Property Name="ID_OPCION" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="NOMBRE_OPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="VENTA_EXT" Relationship="Model.SYS_C007298" FromRole="OPCION" ToRole="VENTA_EXT" />
+  </EntityType>
+  <Association Name="SYS_C007298">
+    <End Type="Model.OPCION" Role="OPCION" Multiplicity="1" />
+    <End Type="Model.VENTA_EXT" Role="VENTA_EXT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OPCION">
+        <PropertyRef Name="ID_OPCION" />
+      </Principal>
+      <Dependent Role="VENTA_EXT">
+        <PropertyRef Name="ID_OPCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SYS_C007299">
+    <End Type="Model.CLIENTE_EXTERNO" Role="CLIENTE_EXTERNO" Multiplicity="1" />
+    <End Type="Model.VENTA_EXT" Role="VENTA_EXT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE_EXTERNO">
+        <PropertyRef Name="ID_CLIENTE2" />
+      </Principal>
+      <Dependent Role="VENTA_EXT">
+        <PropertyRef Name="ID_CLIENTE2" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -41,9 +41,18 @@ namespace WebFeriaVirtual.Controllers
             try
             {
                 // TODO: Add insert logic here
-                producto.Save();
-                TempData["mensaje"] = "producto guardado correctamente";
-                return RedirectToAction("Index", "Producto");
+                
+                if (producto.Stock != 0 & producto.Precio != 0)
+                {
+                    producto.Save();
+                    TempData["mensaje"] = "Producto guardado correctamente";
+                    return RedirectToAction("Index", "Producto");
+                }
+                else
+                {
+                    TempData["mensaje"] = "Favor ingresar valor mayor a 0 en el formulario";
+                    return RedirectToAction("Index", "Producto");
+                }
 
             }
             catch

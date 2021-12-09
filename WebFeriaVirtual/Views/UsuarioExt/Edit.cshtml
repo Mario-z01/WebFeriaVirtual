@@ -3,8 +3,8 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Modificar datos Usuario cliente Externo</h2>
-@Html.ActionLink("Lista de usuarios cliente externo", "ListaUsuExt")
+<h2>Modificar datos Usuario cliente</h2>
+@Html.ActionLink("Lista de usuarios cliente", "ListaUsuExt")
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(e => e.Id)
@@ -12,6 +12,10 @@
     @Html.LabelFor(e => e.Nombre)
     <br />
     @Html.TextBoxFor(e => e.Nombre)
+    <br />
+    @Html.LabelFor(e => e.Pais)
+    <br />
+    @Html.TextBoxFor(e => e.Pais)
     <br />
     @Html.LabelFor(e => e.Direccion)
     <br />

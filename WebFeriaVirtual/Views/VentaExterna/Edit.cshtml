@@ -1,0 +1,16 @@
+﻿@model WebFeriaVirtual.Negocio.VentaExterna
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Modificar Venta</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(v => v.Id)
+    @Html.LabelFor(v => v.IdOpcion, "Cambie el estado de la venta")
+    <br />
+    @Html.DropDownListFor(v => v.IdOpcion, new SelectList(ViewBag.opciones, "Id", "Nombre"))
+    <br />
+    <br />
+    <button>Guardar datos modificados</button>
+}

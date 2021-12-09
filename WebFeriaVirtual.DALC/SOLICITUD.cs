@@ -14,6 +14,11 @@ namespace WebFeriaVirtual.DALC
     
     public partial class SOLICITUD
     {
+        public SOLICITUD()
+        {
+            this.VENTA_EXT = new HashSet<VENTA_EXT>();
+        }
+    
         public decimal ID_SOLICITUD { get; set; }
         public decimal ID_TIPO { get; set; }
         public decimal ID_CALIDAD { get; set; }
@@ -21,5 +26,6 @@ namespace WebFeriaVirtual.DALC
     
         public virtual CALIDAD CALIDAD { get; set; }
         public virtual TIPO TIPO { get; set; }
+        public virtual ICollection<VENTA_EXT> VENTA_EXT { get; set; }
     }
 }

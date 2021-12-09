@@ -1,0 +1,33 @@
+﻿@model WebFeriaVirtual.Negocio.VentaExterna
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Crear venta</h2>
+
+@Html.ActionLink("Lista de Ventas", "Index")
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(s => s.IdProducto, "Seleccione Producto para su venta")
+    <br />
+    @Html.DropDownListFor(s => s.IdSolicitud, new SelectList(ViewBag.solicitudes, "Id", "Tipo.Nombre"))
+    <br />
+    @Html.LabelFor(s => s.IdSolicitud, "Seleccione el pais hacia donde se dirigira el producto ")
+    <br />
+    @Html.DropDownListFor(s => s.IdCliente2, new SelectList(ViewBag.usuarioExternos, "Id", "Pais"))
+    <br />
+    @Html.LabelFor(s => s.IdSolicitud, "Seleccione el precio por kg que desea enlazar con el producto ")
+    <br />
+    @Html.DropDownListFor(s => s.IdProducto, new SelectList(ViewBag.productos, "Id", "Precio"))
+    <br />
+    @Html.LabelFor(s => s.Precio, "Precio Inicial subasta")
+    <br />
+    @Html.TextBoxFor(s => s.Precio)
+    <br />
+    @Html.LabelFor(s => s.IdOpcion, "Estado Venta")
+    <br />
+    @Html.DropDownListFor(s => s.IdOpcion, new SelectList(ViewBag.opciones, "Id", "Nombre"))
+    <br />
+    <br />
+    <button>Guardar datos</button>
+} 

@@ -47,9 +47,17 @@ namespace WebFeriaVirtual.Controllers
             try
             {
                 // TODO: Add insert logic here
-                solicitud.Save();
-                TempData["mensaje"] = "producto guardado correctamente";
-                return RedirectToAction("Index", "Solicitud");
+                if (solicitud.Cantidad != 0)
+                {
+                    solicitud.Save();
+                    TempData["mensaje"] = "Solicitud generada correctamente";
+                    return RedirectToAction("Index", "Solicitud");
+                }
+                else
+                {
+                    TempData["mensaje"] = "Favor ingresar datos correctos en el formulario";
+                    return RedirectToAction("Index", "Solicitud");
+                }
 
             }
             catch

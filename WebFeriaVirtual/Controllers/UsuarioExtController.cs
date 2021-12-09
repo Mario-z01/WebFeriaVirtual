@@ -29,14 +29,22 @@ namespace WebFeriaVirtual.Controllers
 
         // POST: UsuarioInt/CreateExt
         [HttpPost]
-        public ActionResult CreateUsuExt([Bind(Include = "Nombre,Direccion,Telefono,Correo,Contraseña")]UsuarioExterno usuarioExterno)
+        public ActionResult CreateUsuExt([Bind(Include = "Nombre,Pais,Direccion,Telefono,Correo,Contraseña")]UsuarioExterno usuarioExterno)
         {
             try
             {
                 // TODO: Add insert logic here
                 usuarioExterno.Save();
-                TempData["mensaje"] = "Usuario guardado correctamente";
-                return RedirectToAction("ListaUsuExt", "UsuarioExt");
+                if (usuarioExterno.Nombre != null & usuarioExterno.Pais != null & usuarioExterno.Direccion != null & usuarioExterno.Telefono != null & usuarioExterno.Correo != null & usuarioExterno.Contraseña != null)
+                {
+                    TempData["mensaje"] = "Usuario Cliente guardado correctamente";
+                    return RedirectToAction("ListaUsuExt", "UsuarioExt");
+                }
+                else
+                {
+                    TempData["mensaje"] = "Favor ingresar datos correctos en el registro";
+                    return RedirectToAction("ListaUsuExt", "UsuarioExt");
+                }
             }
             catch
             {
@@ -93,7 +101,7 @@ namespace WebFeriaVirtual.Controllers
 
         // POST: Producto/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Direccion,Telefono,Correo,Contraseña")]UsuarioExterno usuarioExterno)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Pais,Direccion,Telefono,Correo,Contraseña")]UsuarioExterno usuarioExterno)
         {
             try
             {

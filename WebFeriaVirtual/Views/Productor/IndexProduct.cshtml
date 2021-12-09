@@ -3,12 +3,52 @@
     ViewBag.Title = "IndexProduct";
 }
 
-<h2>Bienvenido usuario @User.Identity.Name</h2>
-<br />
-<p>Seleccione la opcion que desea realizar:</p>
-<br />
-@Html.ActionLink("Listado de productos en venta", "Index", "Producto")
-<br />
-@Html.ActionLink("Ingresar producto a venta", "Create", "Producto")
 
+<h1>Bienvenido <span>Usuario Productor</span></h1>
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container">
 
+        <div class="row gy-4">
+
+            <div class="col-lg-8">
+                <div class="portfolio-details-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+
+                        <div class="swiper-slide">
+                            <img src="~/Content/img/team/product-1.jpg" alt="">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="~/Content/img/team/product-2.jpg" alt="">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="~/Content/img/team/product-3.jpg" alt="">
+                        </div>
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="portfolio-description">
+                    <h2>Estimado Usuario</h2>
+                    <p>
+                        A continuacion seleccione la opcion deseada, si desea ingresar un producto para su venta o para visualizar el listado de productos a venta
+                    </p>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Seleccione una opción:</h3>
+                    <ul>
+                        <li><form action="" method="post"><input type="button" value="Ingresar producto a venta" onclick="location.href='@Url.Action("Create", "Producto")'"></form></li>
+                        <li><form action="" method="post"><input type="button" value="Listado de productos en venta" onclick="location.href='@Url.Action("Index", "Producto")'"></form></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Portfolio Details Section -->

@@ -245,3 +245,10 @@ Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual\obj\Debug\
 Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual\obj\Debug\WebFeriaVirtual.csproj.CopyComplete
 Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual\obj\Debug\WebFeriaVirtual.dll
 Z:\Escritorio\Duoc\Portafolio - copia\WebFeriaVirtual\WebFeriaVirtual\obj\Debug\WebFeriaVirtual.pdb
+Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual\bin\Antlr3.Runtime.dll
+Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual\bin\Newtonsoft.Json.dll
+Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual\bin\System.Web.Optimization.dll
+Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual\bin\WebGrease.dll
+Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual\bin\Antlr3.Runtime.pdb
+Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual\bin\Newtonsoft.Json.xml
+Z:\Escritorio\Duoc\Portafolio\WebFeriaVirtual\WebFeriaVirtual\bin\System.Web.Optimization.xml
